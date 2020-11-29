@@ -36,5 +36,7 @@ massive({
 //Auth
 app.post('/auth/register', auth.register)
 app.post('/auth/login', auth.login)
+app.post('/auth/logout', auth.logout)
+app.get('/api/user', auth.getUser)
 
 app.listen(SERVER_PORT, () => console.log(`Started at the ${SERVER_PORT} now we here`))
