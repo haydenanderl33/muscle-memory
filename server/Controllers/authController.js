@@ -29,9 +29,9 @@ module.exports = {
         // console.log(authenticated)
         if(authenticated){
             req.session.user = {
-                userId: foundUser.mm_id,
-                email: foundUser.email,
-                username: foundUser.username
+                userId: foundUser[0].mm_id,
+                email: foundUser[0].email,
+                username: foundUser[0].username
             }
             res.status(200).send(req.session.user)
         } else {

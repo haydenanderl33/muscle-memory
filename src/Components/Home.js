@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Workouts from "./Workouts"
+import {connect} from 'react-redux'
 
 class Home extends Component{
     render(){
@@ -11,5 +12,12 @@ class Home extends Component{
         )
     }
 }
+const mapStateToProps = (reduxState) => {
+    const {user, isLoggedIn} = reduxState;
+    return{
+        user,
+        isLoggedIn
+    };
+};
 
-export default Home
+export default connect(mapStateToProps)(Home)
