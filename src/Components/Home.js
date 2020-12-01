@@ -13,7 +13,7 @@ class Home extends Component{
         }
     }
     componentDidMount(){
-        axios.post(`/api/workouts/${this.props.user.userId}`)
+        axios.get(`/api/workouts/${this.props.user.userId}`)
         .then(res =>{
             this.setState({workouts: res.data})
         })
