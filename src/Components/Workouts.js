@@ -1,13 +1,16 @@
-import React, {Component} from 'react'
+import React from "react";
 
-class Workouts extends Component{
-    render(){
-        return(
-            <div>
-                This is the Workouts
-            </div>
-        )
-    }
-}
+const Workouts = ({ workout }) => {
 
-export default Workouts
+
+  return (
+    <div>
+      <div>Exercise {workout.workout_name}</div>
+      <div>Set {workout.set}</div>
+      <div>Reps {workout.set}</div>
+      
+    </div>
+  );
+};
+
+export default Workouts;

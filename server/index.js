@@ -6,6 +6,8 @@ const session = require('express-session')
 
 const { SERVER_PORT,CONNECTION_STRING, SESSION_SECRET } = process.env
 const auth = require('./Controllers/authController')
+const workouts = require('./Controllers/workoutController')
+
 
 const app = express()
 
@@ -40,6 +42,6 @@ app.post('/auth/logout', auth.logout)
 app.get('/api/user', auth.getUser)
 
 //User
-
+app.post('/api/workouts/:mm_id', workouts.getWorkouts)
 
 app.listen(SERVER_PORT, () => console.log(`Started at the ${SERVER_PORT} now we here`))

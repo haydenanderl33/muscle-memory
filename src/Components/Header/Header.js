@@ -2,7 +2,7 @@ import "./Header.css"
 import React, {Component} from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {logoutUser} from '../../redux/reducer'
+import {logoutUser, getUser} from '../../redux/reducer'
 import axios from "axios"
 
 class Header extends Component {
@@ -10,6 +10,10 @@ class Header extends Component {
         super();
 
 
+    }
+
+    componentDidMount(){
+        this.props.getUser()
     }
 
     handleLogout = () => {
@@ -49,7 +53,8 @@ class Header extends Component {
 }
 
 const mapDispatchToProps = {
-    logoutUser
+    logoutUser,
+    getUser
 };
 
 const mapStateToProps = (reduxState) => {
