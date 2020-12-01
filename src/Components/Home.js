@@ -1,65 +1,97 @@
-import React, {Component} from 'react'
-import Workouts from "./Workouts"
-import {connect} from 'react-redux'
-import axios from 'axios'
-import {getUser} from "../redux/reducer"
+import React, { Component } from "react";
+import Workouts from "./Workouts";
+import { connect } from "react-redux";
+import axios from "axios";
+import { getUser } from "../redux/reducer";
 
-class Home extends Component{
-    constructor(props){
-        super(props);
+class Home extends Component {
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            workouts: []
-        }
-    }
-    componentDidMount(){
-        axios.get(`/api/workouts/${this.props.user.userId}`)
-        .then(res =>{
-            this.setState({workouts: res.data})
+    this.state = {
+      workouts: [],
+    };
+  }
+  componentDidMount() {
+    // const updateStuff = new Promise((resolve, reject) => {
+    //     this.getWorkouts()
+    // }).then(() => {
+    //     this.props.getUser();
+    // })
+    axios
+      .get(`/api/workouts/${this.props.user.userId}`)
+      .then((res) => {
+        this.setState({ workouts: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.user.userId !== this.props.user.userId) {
+      console.log(prevProps.user.userId);
+      axios
+        .get(`/api/workouts/${this.props.user.userId}`)
+        .then((res) => {
+          this.setState({ workouts: res.data });
         })
-        .catch(err => {
-            console.log(err)
-        })}
-    
-    
-
-    componentDidUpdate(prevProps){
-        // && this.props.user.userId
-        if(prevProps.user.userId !== this.props.user.userId ){
-        this.props.getUser()
-        axios.post(`/api/workouts/${this.props.user.userId}`)
-        .then(res => {
-            this.setState({workouts: res.data})
-        })
-        .catch(err => {
-            console.log(err)
-        })}
+        .catch((err) => {
+          console.log(err);
+        });
     }
+  }
 
+  deleteWorkout = (ws_id) => {
+    axios
+      .delete(`/api/workouts/delete/${ws_id}`)
+      .then((res) => {
+        this.getWorkouts();
+      })
+      .catch((err) => console.log(err.response.request.response));
+  };
 
-    render(){
-        const {workouts} = this.state;
-        const mappedWorkouts = workouts.map((workout , ws_id ) => {
-        return <Workouts key={workout.ws_id} workout={workout} />})
+  getWorkouts = () => {
+    axios
+      .get(`/api/workouts/${this.props.user.userId}`)
+      .then((res) => {
+        this.setState({ workouts: res.data });
+      })
+      .catch((err) => {
+        console.log("It's just the componentDidMount");
+      });
+  };
 
-        return(
-            <div>Home
-                {mappedWorkouts}
-            </div>
-        )
-    }
+  render() {
+    const { workouts } = this.state;
+    const mappedWorkouts = workouts.map((workout, ws_id) => {
+      return (
+        <Workouts
+          key={workout.ws_id}
+          workout={workout}
+          deleteWorkout={this.deleteWorkout}
+        />
+      );
+    });
+
+    return (
+      <div>
+        Home Component
+        {mappedWorkouts}
+      </div>
+    );
+  }
 }
 const mapDispatchToProps = {
-    getUser
+  getUser,
 };
-
 
 const mapStateToProps = (reduxState) => {
-    const {user, isLoggedIn} = reduxState;
-    return{
-        user,
-        isLoggedIn
-    };
+  const { user, isLoggedIn } = reduxState;
+  return {
+    user,
+    isLoggedIn,
+  };
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

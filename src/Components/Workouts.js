@@ -1,6 +1,6 @@
 import React from "react";
 
-const Workouts = ({ workout }) => {
+const Workouts = ({ workout, deleteWorkout }) => {
 
 
   return (
@@ -8,6 +8,7 @@ const Workouts = ({ workout }) => {
       <div>Exercise {workout.workout_name}</div>
       <div>Sets {workout.set}</div>
       <div>Reps {workout.rep}</div>
+      <button onClick={()=>deleteWorkout(workout.ws_id)}>Deletey{workout.ws_id}</button>
       
     </div>
   );

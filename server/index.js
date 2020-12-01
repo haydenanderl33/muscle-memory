@@ -7,6 +7,8 @@ const session = require('express-session')
 const { SERVER_PORT,CONNECTION_STRING, SESSION_SECRET } = process.env
 const auth = require('./Controllers/authController')
 const workouts = require('./Controllers/workoutController')
+const instructions = require('./Controllers/instructionsController')
+
 
 
 const app = express()
@@ -44,5 +46,10 @@ app.get('/api/user', auth.getUser)
 //User
 app.get('/api/workouts/:mm_id', workouts.getWorkouts)
 app.post('/api/workouts/add/:mm_id', workouts.addWorkout)
+app.delete('/api/workouts/delete/:ws_id', workouts.deleteWorkout)
+
+//Instructions
+app.get('/api/instructions', instructions.getInstructions)
+app.put('/api/instructions/:workout_id', instructions.updateInstructions)
 
 app.listen(SERVER_PORT, () => console.log(`Started at the ${SERVER_PORT} now we here`))
