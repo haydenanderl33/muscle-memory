@@ -9,15 +9,10 @@ class Home extends Component {
     super(props);
 
     this.state = {
-      workouts: [],
+      workouts: []
     };
   }
   componentDidMount() {
-    // const updateStuff = new Promise((resolve, reject) => {
-    //     this.getWorkouts()
-    // }).then(() => {
-    //     this.props.getUser();
-    // })
     axios
       .get(`/api/workouts/${this.props.user.userId}`)
       .then((res) => {
@@ -30,7 +25,6 @@ class Home extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.user.userId !== this.props.user.userId) {
-      console.log(prevProps.user.userId);
       axios
         .get(`/api/workouts/${this.props.user.userId}`)
         .then((res) => {
@@ -76,7 +70,6 @@ class Home extends Component {
 
     return (
       <div>
-        Home Component
         {mappedWorkouts}
       </div>
     );
@@ -95,3 +88,8 @@ const mapStateToProps = (reduxState) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
+
+
+
+
+

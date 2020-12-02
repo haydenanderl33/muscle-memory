@@ -15,7 +15,7 @@ module.exports = {
             res.status(200).send(updatedInstructions)
         }
         catch (err) {
-            console.log("Did not edit")
+            console.log(err)
             res.sendStatus(500)
         }
     }
