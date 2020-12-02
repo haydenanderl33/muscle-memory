@@ -9,7 +9,7 @@ class Home extends Component {
     super(props);
 
     this.state = {
-      workouts: []
+      workouts: [],
     };
   }
   componentDidMount() {
@@ -68,11 +68,7 @@ class Home extends Component {
       );
     });
 
-    return (
-      <div>
-        {mappedWorkouts}
-      </div>
-    );
+    return <div>{mappedWorkouts}</div>;
   }
 }
 const mapDispatchToProps = {
@@ -88,8 +84,3 @@ const mapStateToProps = (reduxState) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
-
-
-
-
-

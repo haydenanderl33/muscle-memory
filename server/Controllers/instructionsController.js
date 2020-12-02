@@ -1,7 +1,7 @@
 module.exports = {
     getInstructions: async (req,res) => {
         const db = req.app.get("db");
-        const [instructions] = await db.get_instructions()
+        const instructions = await db.get_instructions()
         if(instructions){
             return res.status(200).send(instructions)
         }
