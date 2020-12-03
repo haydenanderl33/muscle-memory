@@ -1,0 +1,143 @@
+/* 
+.authcontainer {
+  background-color: tan;
+  height: 100px;
+  width: 100px;
+}
+
+
+@media screen and (max-width: 992px) {
+  .authcontainer {
+    background-color: black;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+body {
+    background-color: black;
+    color: white;
+  }
+}
+
+.authcontainer {
+
+padding: 0;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  height: 100vh;
+  width: auto;
+  background-color: tan;
+
+}
+
+.authbox {
+  height: 100px;
+  width: 300px;
+  margin: 0;
+padding: 0;
+margin-top: -1000px;
+
+
+}
+@media screen and (max-width: 600px) {
+  .authbox {
+    font-size: 50px;
+    color: white;
+    height: 10em;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -100px;
+    background-color: black;
+  }
+
+}
+
+.loginbox {
+  height: 200px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.authitems {
+margin-top: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: blueviolet;
+  border-radius: 5%;
+  padding: 15px;
+  
+}
+@media screen and (max-width: 600px) {
+    .authitems {
+        background-color: black;
+        margin-top: auto
+        
+    }
+}
+.authitems button {
+    background-color: cadetblue;
+    color: cornsilk;
+}
+@media screen and (max-width: 600px) {
+    .authitems button {
+        background-color:rebeccapurple;
+        
+    }
+} */
+.authbox {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rebeccapurple;
+    margin: auto;
+}
+@media screen and (max-width: 600px) {
+    .authbox{
+        background-color:black;
+        color: white;
+        
+    }
+} 
+.authitems {
+    margin-top: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: blueviolet;
+      
+      padding: 15px;
+      
+    }
+    @media screen and (max-width: 600px) {
+        .authitems{
+            background-color:black;
+            color: white;
+            font-size: 3em;
+            
+        }
+    } 
+.loginbox {
+    height: 200px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+  }
