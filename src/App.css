@@ -1,5 +1,13 @@
  .App {
   text-align: center;
  }
+body {
+    background-color: rgb(128, 59, 134);
+}
 
+@media screen and (max-width: 600px){
+    body {
+        background-color: rgb(82, 136, 167);
+    }
+}
 
