@@ -16,7 +16,8 @@ const AddForm = (props) => {
   };
 
 
-    return (
+    return (<div>
+      {props.isLoggedIn ?( 
       <div className="addForm">
         <input
           name="exercise"
@@ -40,6 +41,9 @@ const AddForm = (props) => {
           <button onClick={() => addWorkout()}>Add</button>
           <button>Cancel</button>
         </div>
+      </div>) :(
+        <div>Not Logged In there Sonny</div>
+      )}
       </div>
     );
   }
