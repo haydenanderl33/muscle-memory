@@ -2,7 +2,7 @@ import React from 'react'
 import {Switch, Route} from 'react-router-dom'
 import Auth from "./Components/Auth/Auth"
 import Home from "./Components/Home/Home"
-import AddForm from "./Components/AddForm"
+import AddForm from "./Components/AddForm/AddForm"
 import Instructions from "./Components/Instructions"
 import Goals from "./Components/Goals"
 

@@ -33,19 +33,19 @@ const Header = (props) => {
               <h2 className="logo">Muscle Memory</h2>
           <h3 className="username">{props.user.username}</h3>
               
-                <li><Link to="/home" className="Navls">
+                <li><Link style={{color: "white"}} to="/home" className="Navls">
                   Home
                 </Link></li>
-                <li><Link to="/addnew" className="Navls">
+                <li><Link style={{color: "white"}} to="/addnew" className="Navls">
                   AddNew
                 </Link></li>
-                <li><Link to="/instructions" className="Navls">
+                <li><Link style={{color: "white"}} to="/instructions" className="Navls">
                   Instructions
                 </Link></li>
-                <li><Link to="/goals" className="Navls">
+                <li><Link style={{color: "white"}} to="/goals" className="Navls">
                   Goals
                 </Link></li>
-                <li><Link to="/" className="Navls" onClick={() => handleLogout()}>
+                <li><Link style={{color: "white"}} to="/" className="Navls" onClick={() => handleLogout()}>
                   Logout
                 </Link></li>
             </header>

@@ -1,7 +1,8 @@
 import {useState} from 'react';
 import {connect} from 'react-redux'
-import {getUser} from '../redux/reducer'
+import {getUser} from '../../redux/reducer'
 import axios from 'axios'
+import "./AddForm.css";
 
 const AddForm = (props) => {
   const [workout_name, setExcercise] = useState('');
@@ -23,11 +24,12 @@ const AddForm = (props) => {
 
 
     return (<div>
-      {props.isLoggedIn ?( 
+      {props.isLoggedIn ? ( 
       <div className="addForm">
         <input
           name="exercise"
           placeholder="Exercise"
+          type="text"
           value={workout_name}
           onChange={event => setExcercise(event.target.value)}
         />
@@ -43,9 +45,9 @@ const AddForm = (props) => {
           value={rep}
           onChange={event => setRep(event.target.value)}
         />
-        <div className="addBtns">
-          <button onClick={() => addWorkout()}>Add</button>
-          <button onClick={() => cancel()}>Cancel</button>
+        <div className="btns">
+          <button id="addbtn" onClick={() => addWorkout()}>Add</button>
+          <button id="cancelbtn" onClick={() => cancel()}>Cancel</button>
         </div>
       </div>) :(
         <div>Not Logged In there Sonny</div>
@@ -59,7 +61,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (reduxState) => {
-  const { user, isLoggedIn } = reduxState;
+  const { user, isLoggedIn } = reduxState.userReducer;
   return {
     user,
     isLoggedIn,

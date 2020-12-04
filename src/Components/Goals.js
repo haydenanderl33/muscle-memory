@@ -1,10 +1,13 @@
 import {connect} from 'react-redux'
-import {goals} from '../redux/goalsReducer'
+import {goals, resetgoals} from '../redux/goalsReducer'
 const Goals = (props) => {
 
-const trueFalse = () => {
+const metyourGoals = () => {
   props.goals()
   alert("Good Job meeting your Goals!")
+}
+const reset = () => {
+  props.resetgoals()
 }
 
 
@@ -15,13 +18,13 @@ const trueFalse = () => {
         <div>
           {props.metGoals ? (
             <div>
-              <div>MetGoals is true</div>
-              <button onClick={() => trueFalse()}>Click Me!</button>
+              <div>Good Job!</div>
+              <button onClick={() => reset()}>Click Me!</button>
             </div>
           ) : (
             <div>
-            <div>MetGoals is now false</div>
-            <button onClick={() => trueFalse()}>Click Me!</button>
+            <div>Have you met your goals today?</div>
+            <button onClick={() => metyourGoals()}>Click Me!</button>
           </div>
           )}
         </div>
@@ -29,7 +32,8 @@ const trueFalse = () => {
 }
 
 const mapDispatchToProps = {
-    goals
+    goals,
+    resetgoals
   };
   
   const mapStateToProps = (reduxState) => {
