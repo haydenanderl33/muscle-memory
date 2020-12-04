@@ -18,6 +18,7 @@ const Header = (props) => {
       }
     };
     getInstructions();
+  
   }, [getUser]);
 
     const handleLogout = () => {
@@ -28,6 +29,7 @@ const Header = (props) => {
   if (props.location.pathname !== "/") {
           return (
             <header>
+               {/* {console.log(props)} */}
               <h2 className="logo">Muscle Memory</h2>
           <h3 className="username">{props.user.username}</h3>
               
@@ -39,6 +41,9 @@ const Header = (props) => {
                 </Link></li>
                 <li><Link to="/instructions" className="Navls">
                   Instructions
+                </Link></li>
+                <li><Link to="/goals" className="Navls">
+                  Goals
                 </Link></li>
                 <li><Link to="/" className="Navls" onClick={() => handleLogout()}>
                   Logout
@@ -58,11 +63,16 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (reduxState) => {
-  const { user, isLoggedIn } = reduxState;
+  const { user, isLoggedIn } = reduxState.userReducer;
+  const {metGoals} = reduxState.goalReducer
   return {
     user,
     isLoggedIn,
+    metGoals
   };
+  // console.log(reduxState)
+  // return reduxState
+  
 };
 
 

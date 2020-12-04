@@ -76,11 +76,14 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (reduxState) => {
-  const { user, isLoggedIn } = reduxState;
+  const { user, isLoggedIn } = reduxState.userReducer;
+  const {metGoals} = reduxState.goalReducer
   return {
     user,
     isLoggedIn,
+    metGoals
   };
+  
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -15,6 +15,12 @@ const AddForm = (props) => {
       .catch((err) => console.log(err));
   };
 
+  const cancel = () => {
+    setExcercise('')
+    setSet('')
+    setRep('')
+  }
+
 
     return (<div>
       {props.isLoggedIn ?( 
@@ -39,7 +45,7 @@ const AddForm = (props) => {
         />
         <div className="addBtns">
           <button onClick={() => addWorkout()}>Add</button>
-          <button>Cancel</button>
+          <button onClick={() => cancel()}>Cancel</button>
         </div>
       </div>) :(
         <div>Not Logged In there Sonny</div>
