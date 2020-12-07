@@ -104,11 +104,19 @@ margin-top: 250px;
     justify-content: center;
     align-items: center;
     background-color: rebeccapurple;
+    background-image: url("/src/brooklyn-gym-generic-file-covidjpg.jpg");
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    
     margin: auto;
 }
 @media screen and (max-width: 600px) {
     .authbox{
-        background-color:black;
+      height: 100%;
+      width: 100%;
+      /* background-color:black; */
+        background-size: cover;
         color: white;
         
     }

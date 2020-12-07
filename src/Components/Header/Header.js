@@ -48,6 +48,13 @@ const Header = (props) => {
                 <li><Link style={{color: "white"}} to="/" className="Navls" onClick={() => handleLogout()}>
                   Logout
                 </Link></li>
+                <li>
+                <div className="hamburgerbtn">
+                  {/* <div id="line"></div>
+                  <div id="line"></div> */}
+                </div>
+                </li>
+                
             </header>
           );
         } else {

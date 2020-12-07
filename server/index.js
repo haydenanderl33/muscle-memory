@@ -4,11 +4,12 @@ const express = require('express')
 const massive = require('massive')
 const session = require('express-session')
 
+
 const { SERVER_PORT,CONNECTION_STRING, SESSION_SECRET } = process.env
 const auth = require('./Controllers/authController')
 const workouts = require('./Controllers/workoutController')
 const instructions = require('./Controllers/instructionsController')
-
+const nodemail = require('./Controllers/emailController')
 
 
 const app = express()
@@ -51,5 +52,8 @@ app.delete('/api/workouts/delete/:ws_id', workouts.deleteWorkout)
 //Instructions
 app.get('/api/instructions', instructions.getInstructions)
 app.put('/api/instructions/:workout_id', instructions.updateInstructions)
+
+//Email
+app.post('/api/email', nodemail.email)
 
 app.listen(SERVER_PORT, () => console.log(`Started at the ${SERVER_PORT} now we here`))
