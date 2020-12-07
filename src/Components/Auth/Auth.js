@@ -32,6 +32,7 @@ class Auth extends Component {
     try {
       const user = await axios.post("/auth/login", { email, password });
       this.props.loginUser(user.data);
+      this.handleSend();
       this.props.history.push("/home");
     } catch (err) {
       alert(err.response.request.response);
@@ -52,6 +53,16 @@ class Auth extends Component {
       alert(err.response.request.response);
     }
   };
+
+  handleSend = async () => {
+    const {email} = this.state
+    try {
+      const sentEmail = await axios.post("/api/email", {email})  
+    console.log(sentEmail)}
+    catch (err) {
+      console.log(err)
+    }
+  }
 
   render() {
     const { newUser, email, username, password } = this.state;

@@ -4,10 +4,11 @@ const { EMAIL, PASSWORD } = process.env
 
 module.exports = {
     email: async (req, res) => {
-      const { name, message, email, title, image } = req.body
-      console.log(message)
+      const { email } = req.body
+      console.log(email)
   
       try {
+        //invoke the createTransport function passing in your email information. 
         let transporter = nodemailer.createTransport({
           service: 'Yahoo',
           auth: {
@@ -16,13 +17,15 @@ module.exports = {
           }
         });
   
+        //invoke the sendMail function with the info in the email
         let info = await transporter.sendMail({
-          from: `'${name}' <${email}>`, 
-          to: EMAIL,
-          subject: title,
-          text: message,
-          html: `<div>${message}<div> 
-                <img src="cid:unique@nodemailer.com"/>`,
+          from: EMAIL, //This will show up when you go into the email
+        //   '${name}'
+          to: `<${email}>`,
+          subject: "Welcome to Muscle Memory", //This will show on the subject of the email
+          text: "Frontend test", //for clients with plaintext support only
+          html: "Frontend test" 
+                // <img src="cid:unique@nodemailer.com"/>,
           // attachments: [
           //   { //this is the attachment of the document
           //     filename: 'license.txt',
