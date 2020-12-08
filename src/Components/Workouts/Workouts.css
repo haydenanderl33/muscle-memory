@@ -1,0 +1,43 @@
+.workoutbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 300px;
+    margin: auto;
+    margin-top: 15px;
+    color: white;
+    border-radius: 2%;
+    /* background-color: rgb(128, 59, 134); */
+    background-image: -webkit-linear-gradient(353deg,rgb(128, 59, 134),rgb(0, 238, 255));
+    background-image: -o-linear-gradient(353deg,rgb(128, 59, 134),rgb(0, 238, 255));
+    background-image: linear-gradient(97deg,rgb(128, 59, 134),rgb(0, 238, 255));
+}
+
+@media screen and (max-width: 600px) {
+    .workoutbox {
+        background-color: rgb(141, 66, 97);
+        color: white;
+        background-image: -webkit-linear-gradient(353deg,rgb(141, 66, 97),rgb(204, 0, 255));
+    background-image: -o-linear-gradient(353deg,rgb(141, 66, 97),rgb(204, 0, 255));
+    background-image: linear-gradient(97deg,rgb(141, 66, 97),rgb(204, 0, 255));
+    }
+  } 
+
+.workoutbox h4 {
+    margin: 0;
+}
+.workoutbox button {
+    border-radius: 2%;
+}
+
+.deleletey {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 100px;
+    background-color: rgb(0, 238, 255);
+}

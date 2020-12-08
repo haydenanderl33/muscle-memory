@@ -1,15 +1,21 @@
  .App {
   text-align: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+
  }
 body {
     color: white;
-    background-color: rgb(128, 59, 134);
+    /* background-color: rgb(128, 59, 134); */
+    background-image: -webkit-linear-gradient(353deg,rgb(128, 59, 134),rgb(0, 238, 255));
+    background-image: -o-linear-gradient(353deg,rgb(128, 59, 134),rgb(0, 238, 255));
+    background-image: linear-gradient(97deg,rgb(128, 59, 134),rgb(0, 238, 255));
 }
 
 @media screen and (max-width: 600px){
     body {
-        /* background-color: rgb(82, 136, 167); */
-        background-color:black;
+        background-color:black;color: white;
+        background-image: none
+       
     }
 }
 

@@ -40,7 +40,6 @@ const Instructions = (props) => {
   })
 
   return <div>
-    <div>Instructions</div>
 <div>{mappedInstructions}</div>
   </div>;
 };

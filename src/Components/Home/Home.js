@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Workouts from "../Workouts";
+import Workouts from "../Workouts/Workouts";
 import { connect } from "react-redux";
 import axios from "axios";
 import { getUser } from "../../redux/reducer";
@@ -68,7 +68,7 @@ class Home extends Component {
       );
     });
 
-    return <div>{mappedWorkouts}</div>;
+    return <div className="workouts">{mappedWorkouts}</div>;
   }
 }
 const mapDispatchToProps = {

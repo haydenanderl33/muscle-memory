@@ -2,10 +2,11 @@ import "./Header.css";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutUser, getUser } from "../../redux/reducer";
-import {useEffect} from 'react'
+import {useState , useEffect} from 'react'
 import axios from "axios";
 
 const Header = (props) => {
+  const [toggle, setToggle] = useState(false)
   const {getUser}= props
   useEffect(() => {
     const getInstructions = async () => {
@@ -26,12 +27,43 @@ const Header = (props) => {
     props.logoutUser();
   };
 
+
+
   if (props.location.pathname !== "/") {
           return (
             <header>
                {/* {console.log(props)} */}
               <h2 className="logo">Muscle Memory</h2>
           <h3 className="username">{props.user.username}</h3>
+          {!toggle ? (<div><div onClick={() => setToggle(!toggle)}  className="menubtn">
+                <div></div>
+                <div></div>
+                <div></div>
+                </div>
+                </div>) : (<div>
+                  <div onClick={() => setToggle(!toggle)} className="menubtn">
+                <div></div>
+                <div></div>
+                <div></div>
+                </div>
+                  <div className="dropdownmenu">
+                <div><Link style={{color: "rgb(0, 140, 255)"}} to="/home" className="Navls">
+                  Home
+                </Link></div>
+                <div><Link style={{color: "rgb(0, 140, 255)"}} to="/addnew" className="Navls">
+                  AddNew
+                </Link></div>
+                <div><Link style={{color: "rgb(0, 140, 255)"}} to="/instructions" className="Navls">
+                  Instructions
+                </Link></div>
+                <div><Link style={{color: "rgb(0, 140, 255)"}} to="/goals" className="Navls">
+                  Goals
+                </Link></div>
+                <div><Link style={{color: "rgb(0, 140, 255)"}} to="/" className="Navls" onClick={() => handleLogout()}>
+                  Logout
+                </Link></div></div>
+                </div>
+                )}
               
                 <li><Link style={{color: "white"}} to="/home" className="Navls">
                   Home
@@ -48,12 +80,7 @@ const Header = (props) => {
                 <li><Link style={{color: "white"}} to="/" className="Navls" onClick={() => handleLogout()}>
                   Logout
                 </Link></li>
-                <li>
-                <div className="hamburgerbtn">
-                  {/* <div id="line"></div>
-                  <div id="line"></div> */}
-                </div>
-                </li>
+              
                 
             </header>
           );

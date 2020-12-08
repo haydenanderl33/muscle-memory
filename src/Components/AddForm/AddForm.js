@@ -8,10 +8,11 @@ const AddForm = (props) => {
   const [workout_name, setExcercise] = useState('');
   const [set, setSet] = useState('')
   const [rep, setRep] = useState('')
+  const [weight, setWeight] = useState('')
 
   const addWorkout = () => {
     axios
-      .post(`/api/workouts/add/${props.user.userId}`, {workout_name, set, rep })
+      .post(`/api/workouts/add/${props.user.userId}`, {workout_name, set, rep, weight })
       .then(res => props.history.push("/home"))
       .catch((err) => console.log(err));
   };
@@ -20,6 +21,7 @@ const AddForm = (props) => {
     setExcercise('')
     setSet('')
     setRep('')
+    setWeight('')
   }
 
 
@@ -44,6 +46,12 @@ const AddForm = (props) => {
           placeholder="Reps"
           value={rep}
           onChange={event => setRep(event.target.value)}
+        />
+        <input
+          name="weight"
+          placeholder="Weight"
+          value={weight}
+          onChange={event => setWeight(event.target.value)}
         />
         <div className="btns">
           <button id="addbtn" onClick={() => addWorkout()}>Add</button>

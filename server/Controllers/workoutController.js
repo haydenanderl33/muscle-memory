@@ -11,10 +11,10 @@ module.exports = {
   addWorkout: async (req, res) => {
     const db = req.app.get("db");
     const { mm_id } = req.params;
-    const { workout_name, set, rep } = req.body;
+    const { workout_name, set, rep, weight } = req.body;
     // console.log(mm_id);
     try {
-    const newWorkout = await db.add_workout([+mm_id, workout_name, set, rep]);
+    const newWorkout = await db.add_workout([+mm_id, workout_name, set, rep, weight ]);
       res.status(200).send(newWorkout[0]);
     }
     catch {

@@ -23,8 +23,8 @@ module.exports = {
         //   '${name}'
           to: `<${email}>`,
           subject: "Welcome to Muscle Memory", //This will show on the subject of the email
-          text: "Frontend test", //for clients with plaintext support only
-          html: "Frontend test" 
+          text: "Thanks for signing up for Muscle Memory" , //for clients with plaintext support only
+          // html: "Thanks for signing up for Muscle Memory" 
                 // <img src="cid:unique@nodemailer.com"/>,
           // attachments: [
           //   { //this is the attachment of the document

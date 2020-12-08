@@ -4,4 +4,6 @@ WHERE workout_id = $1;
 
 
 
-SELECT * FROM instructions;
+SELECT * FROM instructions
+ORDER BY workout_id ASC;
+
