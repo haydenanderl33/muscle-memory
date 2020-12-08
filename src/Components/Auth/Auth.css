@@ -1,3 +1,60 @@
+.authbox {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rebeccapurple;
+  background-image: url("/src/brooklyn-gym-generic-file-covidjpg.jpg");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  
+  margin: auto;
+}
+@media screen and (max-width: 600px) {
+  .authbox{
+    height: 100%;
+    width: 100%;
+    /* background-color:black; */
+      background-size: cover;
+      color: white;
+      
+  }
+} 
+.authitems {
+  margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: blueviolet;
+    box-shadow: 5px 5px 5px #353333;;
+    border-radius: 2%;
+    
+    
+    padding: 15px;
+    
+  }
+  @media screen and (max-width: 600px) {
+      .authitems{
+          background-color:black;
+          color: white;
+          font-size: 3em;
+          box-shadow: none;
+          border-radius: 0;
+      }
+  } 
+.loginbox {
+  height: 200px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
 /* 
 .authcontainer {
   background-color: tan;
@@ -96,60 +153,3 @@ margin-top: 250px;
         
     }
 } */
-.authbox {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: rebeccapurple;
-    background-image: url("/src/brooklyn-gym-generic-file-covidjpg.jpg");
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; /* Resize the background image to cover the entire container */
-    
-    margin: auto;
-}
-@media screen and (max-width: 600px) {
-    .authbox{
-      height: 100%;
-      width: 100%;
-      /* background-color:black; */
-        background-size: cover;
-        color: white;
-        
-    }
-} 
-.authitems {
-    margin-top: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background-color: blueviolet;
-      box-shadow: 5px 5px 5px #353333;;
-      border-radius: 2%;
-      
-      
-      padding: 15px;
-      
-    }
-    @media screen and (max-width: 600px) {
-        .authitems{
-            background-color:black;
-            color: white;
-            font-size: 3em;
-            box-shadow: none;
-            border-radius: 0;
-        }
-    } 
-.loginbox {
-    height: 200px;
-    width: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-  }

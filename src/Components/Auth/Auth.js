@@ -32,7 +32,7 @@ class Auth extends Component {
     try {
       const user = await axios.post("/auth/login", { email, password });
       this.props.loginUser(user.data);
-      // this.handleSend();
+      this.handleSend();
       this.props.history.push("/home");
     } catch (err) {
       alert(err.response.request.response);
