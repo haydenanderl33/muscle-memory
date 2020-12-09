@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ReactPlayer from 'react-player';
 
 const InstructionList = (props) => {
   const [input, setInput] = useState(props.instruction.instructions);
@@ -13,8 +14,9 @@ const InstructionList = (props) => {
         />
       ) : (
         <div>
-          <h2>{props.instruction.workout_name}</h2>
+          <h2>Notes for {props.instruction.workout_name}</h2>
           <div>{props.instruction.instructions}</div>
+          <ReactPlayer url={props.instruction.url}/>
         </div>
       )}
       {edit ? (

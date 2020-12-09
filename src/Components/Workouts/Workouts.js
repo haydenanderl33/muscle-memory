@@ -1,6 +1,7 @@
 import React from "react";
 import "./Workouts.css"
 
+
 const Workouts = ({ workout, deleteWorkout }) => {
 
 
