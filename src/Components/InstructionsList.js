@@ -1,22 +1,30 @@
 import { useState } from "react";
-import ReactPlayer from 'react-player';
+import ReactPlayer from "react-player";
+import "./InstructionList.css";
 
 const InstructionList = (props) => {
   const [input, setInput] = useState(props.instruction.instructions);
   const [edit, setEdit] = useState(false);
   return (
-    <div>
-      {edit ? (
+    <div className="instructionList">
+      {edit ? (<div>
+        <div className="reactplayer">
+            <ReactPlayer url={props.instruction.url} />
+          </div>
+          <h2>Notes for {props.instruction.workout_name}</h2>
         <input
           value={input}
           type="text"
           onChange={(e) => setInput(e.target.value)}
         />
+        </div>
       ) : (
         <div>
+          <div className="reactplayer">
+            <ReactPlayer url={props.instruction.url} />
+          </div>
           <h2>Notes for {props.instruction.workout_name}</h2>
           <div>{props.instruction.instructions}</div>
-          <ReactPlayer url={props.instruction.url}/>
         </div>
       )}
       {edit ? (
@@ -31,7 +39,7 @@ const InstructionList = (props) => {
           </button>
           <button
             onClick={() => {
-              props.editInstructions(props.instruction.workout_id, input)
+              props.editInstructions(props.instruction.workout_id, input);
               setEdit(!edit);
             }}
           >

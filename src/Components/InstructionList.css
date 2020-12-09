@@ -1,0 +1,29 @@
+.reactplayer {
+  display: flex;
+  justify-content: center;
+  background-color: none;
+  width: auto;
+  height: auto;
+}
+
+ReactPlayer {
+  display: flex;
+  justify-content: center;
+  padding-top: 56.25%;
+  position: relative;
+}
+
+.instructionList button {
+  margin: 20px;
+  background-color: #f391a0;
+}
+.instructionList input {
+  height: 50px;
+  width: 200px;
+  /* text-align: left; */
+  /* text-align: top; */
+  word-wrap: break-word;
+  color: white;
+  background-color: #361134;
+}
+ 

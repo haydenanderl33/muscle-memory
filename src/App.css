@@ -6,9 +6,9 @@
 body {
     color: white;
     /* background-color: rgb(128, 59, 134); */
-    background-image: -webkit-linear-gradient(353deg,rgb(128, 59, 134),rgb(0, 238, 255));
-    background-image: -o-linear-gradient(353deg,rgb(128, 59, 134),rgb(0, 238, 255));
-    background-image: linear-gradient(97deg,rgb(128, 59, 134),rgb(0, 238, 255));
+    background-image: -webkit-linear-gradient(353deg,#E56B70,#361134);
+    background-image: -o-linear-gradient(353deg,#E56B70,#361134);
+    background-image: linear-gradient(97deg,#E56B70,#361134);
 }
 
 @media screen and (max-width: 600px){

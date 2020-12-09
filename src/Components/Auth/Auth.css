@@ -29,7 +29,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: blueviolet;
+    background-color: #361134;
     box-shadow: 5px 5px 5px #353333;;
     border-radius: 2%;
     
@@ -47,13 +47,17 @@
       }
   } 
 .loginbox {
-  height: 200px;
+  height: 250px;
   width: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   
+}
+
+.authbox button {
+  background-color: #F391A0;
 }
 /* 
 .authcontainer {
