@@ -59,101 +59,22 @@
 .authbox button {
   background-color: #F391A0;
 }
-/* 
-.authcontainer {
-  background-color: tan;
-  height: 100px;
-  width: 100px;
-}
-
-
-@media screen and (max-width: 992px) {
-  .authcontainer {
-    background-color: black;
-  }
-}
-
-
 @media screen and (max-width: 600px) {
-body {
-    background-color: black;
+  .authbox button{
+      background-color: #F9BB9F ;
+  }
+} 
+@media screen and (max-width: 600px){
+.authbox ::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: white;
+}}
+@media screen and (max-width: 600px) {
+  .authbox input {
+    height: 30px;
     color: white;
+    background-image: -webkit-linear-gradient(353deg, #324376, #f76c5e);
+    background-image: -o-linear-gradient(353deg, #324376, #f76c5e);
+    background-image: linear-gradient(189deg, #324376, #f76c5e);
   }
 }
-
-.authcontainer {
-
-padding: 0;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  font-size: 30px;
-  height: 100vh;
-  width: auto;
-  background-color: tan;
-
-}
-
-.authbox {
-  height: 100px;
-  width: 300px;
-  margin: 0;
-padding: 0;
-margin-top: -1000px;
-
-
-}
-@media screen and (max-width: 600px) {
-  .authbox {
-    font-size: 50px;
-    color: white;
-    height: 10em;
-    width: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: -100px;
-    background-color: black;
-  }
-
-}
-
-.loginbox {
-  height: 200px;
-  width: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.authitems {
-margin-top: 250px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: blueviolet;
-  border-radius: 5%;
-  padding: 15px;
-  
-}
-@media screen and (max-width: 600px) {
-    .authitems {
-        background-color: black;
-        margin-top: auto
-        
-    }
-}
-.authitems button {
-    background-color: cadetblue;
-    color: cornsilk;
-}
-@media screen and (max-width: 600px) {
-    .authitems button {
-        background-color:rebeccapurple;
-        
-    }
-} */

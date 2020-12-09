@@ -40,6 +40,7 @@ header {
   .username {
     margin-left: 0;
     margin-right: 0;
+    color: #A088BF;
   }
 }
 @media screen and (max-width: 600px) {

@@ -1,10 +1,12 @@
 import {connect} from 'react-redux'
 import {goals, resetgoals} from '../redux/goalsReducer'
+import Stripe from './Stripe'
+
 const Goals = (props) => {
 
 const metyourGoals = () => {
   props.goals()
-  alert("Good Job meeting your Goals!")
+  // alert("Good Job meeting your Goals!")
 }
 const reset = () => {
   props.resetgoals()
@@ -20,6 +22,7 @@ const reset = () => {
             <div>
               <div>Good Job!</div>
               <button onClick={() => reset()}>Click Me!</button>
+              <Stripe/>
             </div>
           ) : (
             <div>

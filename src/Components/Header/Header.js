@@ -47,19 +47,19 @@ const Header = (props) => {
                 <div></div>
                 </div>
                   <div className="dropdownmenu">
-                <div><Link style={{color: "rgb(0, 140, 255)"}} to="/home" className="Navls">
+                <div><Link style={{color: "#F76C5E"}} to="/home" className="Navls">
                   Home
                 </Link></div>
-                <div><Link style={{color: "rgb(0, 140, 255)"}} to="/addnew" className="Navls">
+                <div><Link style={{color: "#F76C5E"}} to="/addnew" className="Navls">
                   AddNew
                 </Link></div>
-                <div><Link style={{color: "rgb(0, 140, 255)"}} to="/instructions" className="Navls">
+                <div><Link style={{color: "#F76C5E"}} to="/instructions" className="Navls">
                   Instructions
                 </Link></div>
-                <div><Link style={{color: "rgb(0, 140, 255)"}} to="/goals" className="Navls">
+                <div><Link style={{color: "#F76C5E"}} to="/goals" className="Navls">
                   Goals
                 </Link></div>
-                <div><Link style={{color: "rgb(0, 140, 255)"}} to="/" className="Navls" onClick={() => handleLogout()}>
+                <div><Link style={{color: "#F76C5E"}} to="/" className="Navls" onClick={() => handleLogout()}>
                   Logout
                 </Link></div></div>
                 </div>

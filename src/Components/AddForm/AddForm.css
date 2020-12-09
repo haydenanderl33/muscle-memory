@@ -1,65 +1,70 @@
 .addForm {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color:white;
-  }
-  .btns {
-      
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;
-    
-  }
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.btns {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+}
 
-  #addbtn{
-    height: 50px;
-    width: 50px;
-    margin-top: 20px;
-    margin-right: 50px;
-    background-color: #F391A0;
+#addbtn {
+  height: 50px;
+  width: 50px;
+  margin-top: 20px;
+  margin-right: 50px;
+  background-color: #f391a0;
+}
+#cancelbtn {
+  height: 50px;
+  width: 70px;
+  margin-top: 20px;
+  margin-left: 50px;
+  background-color: #f391a0;
+}
+@media screen and (max-width: 600px) {
+  #addbtn {
+    height: 30px;
+    color: white;
+    background-image: -webkit-linear-gradient(353deg, #324376, #f76c5e);
+    background-image: -o-linear-gradient(353deg, #324376, #f76c5e);
+    background-image: linear-gradient(97deg, #324376, #f76c5e);
   }
-  #cancelbtn{
-    height: 50px;
-    width: 70px;
-    margin-top: 20px;
-    margin-left: 50px;
-    background-color: #F391A0;
+}
+@media screen and (max-width: 600px) {
+  #cancelbtn {
+    height: 30px;
+    color: white;
+    background-image: -webkit-linear-gradient(353deg, #324376, #f76c5e);
+    background-image: -o-linear-gradient(353deg, #324376, #f76c5e);
+    background-image: linear-gradient(97deg, #324376, #f76c5e);
   }
-  @media screen and (max-width: 600px) {
-    #addbtn {
-        background-color: rgb(141, 66, 97);
-        color: white;
-    }
-  } 
-  @media screen and (max-width: 600px) {
-    #cancelbtn {
-        background-color: rgb(141, 66, 97);
-        color: white;
-    }
-  } 
+}
 
-
-
+.addForm input {
+  color: white;
+  height: 40px;
+  width: 500px;
+  margin: 10px;
+  font-size: 2.5em;
+  background-color: #361134;
+}
+.addForm ::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: white;
+}
+@media screen and (max-width: 600px) {
   .addForm input {
-      color: white;
-      height: 40px;
-      width: 500px;
-      margin: 10px;
-      font-size: 2.5em;
-      background-color: #361134;
+    height: 20px;
+    width: 200px;
+    font-size: 1.5em;
+
+    background-image: -webkit-linear-gradient(353deg, #324376, #f76c5e);
+    background-image: -o-linear-gradient(353deg, #324376, #f76c5e);
+    background-image: linear-gradient(97deg, #324376, #f76c5e);
   }
-  .addForm ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: white
-  }
-  @media screen and (max-width: 600px) {
-    .addForm input {
-        height: 20px;
-        width: 200px;
-        font-size: 1.5em;
-        
-        background-color: rgb(141, 66, 97);
-    }
-  } 
+}
