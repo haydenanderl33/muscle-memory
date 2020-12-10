@@ -13,10 +13,10 @@ const Stripe = (props) => {
   return (
     <div>
       <StripeCheckout
-        description={"Apple Clone Demonstration"}
+        description={"Muscle Memory Platinum"}
         token={onToken}
         stripeKey={process.env.REACT_APP_PUB_KEY}
-        amount={"25.00"}
+        amount={"2500.00"}
       />
     </div>
   );

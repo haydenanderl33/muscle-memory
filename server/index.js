@@ -16,9 +16,10 @@ const bodyParser = require('body-parser');
 // const YOUR_DOMAIN = 'http://localhost:5555';
 
 const app = express()
+app.use(express.static(`${__dirname}/../build`))
 
 app.use(express.json());
-// app.use(express.static('.'));
+
 app.use( cors() );
 app.use( bodyParser.json() );
 
