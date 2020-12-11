@@ -5,14 +5,12 @@ const massive = require('massive')
 const session = require('express-session')
 
 
-const { SERVER_PORT,CONNECTION_STRING, SESSION_SECRET} = process.env
+const { SERVER_PORT,CONNECTION_STRING, SESSION_SECRET, SECRET_KEY} = process.env
 const auth = require('./Controllers/authController')
 const workouts = require('./Controllers/workoutController')
 const instructions = require('./Controllers/instructionsController')
 const nodemail = require('./Controllers/emailController')
-const stripe = require('stripe')('sk_test_51HwaqHDNjLMWEToxYdHx96txk4GikzTb6pu5OloetDXxFFAon8hfE6AqfNf6ziBqw38ecpdoWDCxhbRGN6Iv52oQ001ZTWGHtx')
-// ('pk_test_51HwaqHDNjLMWEToxyAUQFSC6GVN3n9tv4CWah6DjjGNySQVJLdwJzB7CFiEHPreHtj8Mw4qKgfOCeTGQFiluBBdm00ArAlta08')
-// ('sk_test_51HwaqHDNjLMWEToxYdHx96txk4GikzTb6pu5OloetDXxFFAon8hfE6AqfNf6ziBqw38ecpdoWDCxhbRGN6Iv52oQ001ZTWGHtx')
+const stripe = require('stripe')(SECRET_KEY)
 const cors = require('cors');
 const bodyParser = require('body-parser');
 // const YOUR_DOMAIN = 'http://localhost:5555';
