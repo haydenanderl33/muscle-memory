@@ -5,12 +5,14 @@ const massive = require('massive')
 const session = require('express-session')
 
 
-const { SERVER_PORT,CONNECTION_STRING, SESSION_SECRET, SECRET_KEY, REACT_APP_PUB_KEY } = process.env
+const { SERVER_PORT,CONNECTION_STRING, SESSION_SECRET} = process.env
 const auth = require('./Controllers/authController')
 const workouts = require('./Controllers/workoutController')
 const instructions = require('./Controllers/instructionsController')
 const nodemail = require('./Controllers/emailController')
-const stripe = require('stripe')('SECRET_KEY');
+const stripe = require('stripe')('sk_test_51HwaqHDNjLMWEToxYdHx96txk4GikzTb6pu5OloetDXxFFAon8hfE6AqfNf6ziBqw38ecpdoWDCxhbRGN6Iv52oQ001ZTWGHtx')
+// ('pk_test_51HwaqHDNjLMWEToxyAUQFSC6GVN3n9tv4CWah6DjjGNySQVJLdwJzB7CFiEHPreHtj8Mw4qKgfOCeTGQFiluBBdm00ArAlta08')
+// ('sk_test_51HwaqHDNjLMWEToxYdHx96txk4GikzTb6pu5OloetDXxFFAon8hfE6AqfNf6ziBqw38ecpdoWDCxhbRGN6Iv52oQ001ZTWGHtx')
 const cors = require('cors');
 const bodyParser = require('body-parser');
 // const YOUR_DOMAIN = 'http://localhost:5555';
@@ -64,45 +66,83 @@ app.put('/api/instructions/:workout_id', instructions.updateInstructions)
 app.post('/api/email', nodemail.email)
 
 //Stripe
-app.post('/api/checkout', function(req, res, next){
-    //convert amount to pennies
-  //   console.log("Begining payment");
-  //   const amountArray = req.body.amount.toString().split('');
-  //   const pennies = [];
-  //   for (var i = 0; i < amountArray.length; i++) {
-  //     if(amountArray[i] === ".") {
-  //       if (typeof amountArray[i + 1] === "string") {
-  //         pennies.push(amountArray[i + 1]);
-  //       } else {
-  //         pennies.push("0");
-  //       }
-  //       if (typeof amountArray[i + 2] === "string") {
-  //         pennies.push(amountArray[i + 2]);
-  //       } else {
-  //         pennies.push("0");
-  //       }
-  //         break;
-  //     } else {
-  //         pennies.push(amountArray[i])
-  //     }
-  //   }
-  //   const convertedAmt = parseInt(pennies.join(''));
-  // console.log("amt", convertedAmt);
-  const charge = stripe.charges.create({
-  amount: 5, // amount in cents, again
-  currency: 'usd',
-  source: req.body.token.id,
-  description: 'Test charge from react app'
-  }, function(err, charge) {
-    if (err) {
-      console.error(err);
-      return res.sendStatus(500)
-    }
-    return res.sendStatus(200);
-  // if (err && err.type === 'StripeCardError') {
-  //   // The card has been declined
-  // }
-  });
+app.post('/create-checkout-session', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: [
+      {
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: 'T-shirt',
+          },
+          unit_amount: 2000,
+        },
+        quantity: 1,
+      },
+    ],
+    mode: 'payment',
+    success_url: 'https://localhost:3000/home',
+    cancel_url: 'https://localhost:3000/goals',
   });
 
+  res.json({ id: session.id });
+//   const charge = stripe.charges.create({
+//     amount: 2500, // amount in cents, again
+//     currency: 'usd',
+//     customer: 0,
+//     // description: 'Test charge from react app'
+//   }, function(err, charge) {
+//       if (err) {
+        
+//         console.log(err)
+//         return res.sendStatus(500)}
+//       return res.sendStatus(200);
+// });
+})
+
+
 app.listen(SERVER_PORT, () => console.log(`Started at the ${SERVER_PORT} now we here`))
+
+
+//Stripe
+// app.post('/api/checkout', function(req, res, next){
+//     //convert amount to pennies
+//   //   console.log("Begining payment");
+//   //   const amountArray = req.body.amount.toString().split('');
+//   //   const pennies = [];
+//   //   for (var i = 0; i < amountArray.length; i++) {
+//   //     if(amountArray[i] === ".") {
+//   //       if (typeof amountArray[i + 1] === "string") {
+//   //         pennies.push(amountArray[i + 1]);
+//   //       } else {
+//   //         pennies.push("0");
+//   //       }
+//   //       if (typeof amountArray[i + 2] === "string") {
+//   //         pennies.push(amountArray[i + 2]);
+//   //       } else {
+//   //         pennies.push("0");
+//   //       }
+//   //         break;
+//   //     } else {
+//   //         pennies.push(amountArray[i])
+//   //     }
+//   //   }
+//   //   const convertedAmt = parseInt(pennies.join(''));
+//   // console.log("amt", convertedAmt);
+//   const charge = stripe.charges.create({
+//   amount: 5, // amount in cents, again
+//   currency: 'usd',
+//   source: req.body.token.id,
+//   description: 'Test charge from react app'
+//   }, function(err, charge) {
+//     if (err) {
+//       console.error(err);
+//       return res.sendStatus(500)
+//     }
+//     return res.sendStatus(200);
+//   // if (err && err.type === 'StripeCardError') {
+//   //   // The card has been declined
+//   // }
+//   });
+//   });
