@@ -72,31 +72,20 @@ app.post('/create-checkout-session', async (req, res) => {
         price_data: {
           currency: 'usd',
           product_data: {
-            name: 'T-shirt',
+            name: 'Muscle Memory Platinum',
           },
-          unit_amount: 2000,
+          unit_amount: 2500,
         },
         quantity: 1,
       },
     ],
     mode: 'payment',
-    success_url: 'https://localhost:3000/',
-    cancel_url: 'https://localhost:3000/',
+    success_url: 'http://localhost:3000/#/goals',
+    cancel_url: 'http://localhost:3000/#/home',
   });
 
   res.json({ id: session.id });
-//   const charge = stripe.charges.create({
-//     amount: 2500, // amount in cents, again
-//     currency: 'usd',
-//     customer: 0,
-//     // description: 'Test charge from react app'
-//   }, function(err, charge) {
-//       if (err) {
-        
-//         console.log(err)
-//         return res.sendStatus(500)}
-//       return res.sendStatus(200);
-// });
+
 })
 
 
