@@ -80,8 +80,10 @@ app.post('/create-checkout-session', async (req, res) => {
       },
     ],
     mode: 'payment',
-    success_url: 'http://localhost:3000/#/success',
-    cancel_url: 'http://localhost:3000/#/home',
+    // success_url: 'http://localhost:3000/#/success',
+    // cancel_url: 'http://localhost:3000/#/home',
+    success_url: 'http://178.128.4.188:5555/#/success',
+    cancel_url: 'http://178.128.4.188:5555/#/home',
   });
 
   res.json({ id: session.id });
@@ -92,44 +94,3 @@ app.post('/create-checkout-session', async (req, res) => {
 app.listen(SERVER_PORT, () => console.log(`Started at the ${SERVER_PORT} now we here`))
 
 
-//Stripe
-// app.post('/api/checkout', function(req, res, next){
-//     //convert amount to pennies
-//   //   console.log("Begining payment");
-//   //   const amountArray = req.body.amount.toString().split('');
-//   //   const pennies = [];
-//   //   for (var i = 0; i < amountArray.length; i++) {
-//   //     if(amountArray[i] === ".") {
-//   //       if (typeof amountArray[i + 1] === "string") {
-//   //         pennies.push(amountArray[i + 1]);
-//   //       } else {
-//   //         pennies.push("0");
-//   //       }
-//   //       if (typeof amountArray[i + 2] === "string") {
-//   //         pennies.push(amountArray[i + 2]);
-//   //       } else {
-//   //         pennies.push("0");
-//   //       }
-//   //         break;
-//   //     } else {
-//   //         pennies.push(amountArray[i])
-//   //     }
-//   //   }
-//   //   const convertedAmt = parseInt(pennies.join(''));
-//   // console.log("amt", convertedAmt);
-//   const charge = stripe.charges.create({
-//   amount: 5, // amount in cents, again
-//   currency: 'usd',
-//   source: req.body.token.id,
-//   description: 'Test charge from react app'
-//   }, function(err, charge) {
-//     if (err) {
-//       console.error(err);
-//       return res.sendStatus(500)
-//     }
-//     return res.sendStatus(200);
-//   // if (err && err.type === 'StripeCardError') {
-//   //   // The card has been declined
-//   // }
-//   });
-//   });
