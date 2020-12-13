@@ -80,12 +80,12 @@ app.post('/create-checkout-session', async (req, res) => {
       },
     ],
     mode: 'payment',
-    success_url: 'http://127.0.0.1:5555/#/success',
-    cancel_url: 'http://127.0.0.1:5555#/home',
+    success_url: 'http://musclememory.me/#/success',
+    cancel_url: 'http://musclememory.me/#/home',
+    // success_url: 'http://127.0.0.1:5555/#/success',
+    // cancel_url: 'http://127.0.0.1:5555#/home',
     // success_url: 'http://localhost:3000/#/success',
     // cancel_url: 'http://localhost:3000/#/home',
-    // success_url: 'http://musclememory.me/#/success',
-    // cancel_url: 'http:///#/home',
   });
 
   res.json({ id: session.id });
