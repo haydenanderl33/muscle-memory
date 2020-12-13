@@ -1,3 +1,4 @@
+import "./Stripe.css";
 import {loadStripe} from '@stripe/stripe-js'
 const stripePromise = loadStripe('pk_test_51HwaqHDNjLMWEToxyAUQFSC6GVN3n9tv4CWah6DjjGNySQVJLdwJzB7CFiEHPreHtj8Mw4qKgfOCeTGQFiluBBdm00ArAlta08');
 const Stripe = (props) => {
@@ -25,9 +26,9 @@ const Stripe = (props) => {
 
   return (
     <div>
-      <div>Want to Reach Your goals faster?</div>
-      <div>Try Muscle Memory Platinum</div>
-    <button role="link" onClick={handleClick}>
+      <h3>Want to Reach Your Goals faster?</h3>
+      <h3>Try Muscle Memory Platinum</h3>
+    <button className="goPlatinum" role="link" onClick={handleClick}>
       Go Platinum
     </button>
     </div>

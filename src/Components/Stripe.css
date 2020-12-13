@@ -1,0 +1,15 @@
+.goPlatinum {
+  color: #361134;
+  margin-top: 30px;
+  text-align: center;
+  font-size: 30px;
+  height: 100px;
+  width: 150px;
+  background-color: #e5e4e2;
+  border-radius: 12%;
+  transition-duration: 0.4s;
+}
+.goPlatinum:hover {
+    color: white;
+  background-color: #b0228c;
+}
