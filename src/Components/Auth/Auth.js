@@ -46,10 +46,9 @@ class Auth extends Component {
         username,
         password,
       });
-      const user2 = await axios.post("/auth/login", { email, password });
-      this.props.loginUser(user2.data);
-      alert(`New Account Created for ${username}`)
-      this.props.history.push("/home");
+      // this.props.loginUser(user.data);
+      alert(`New Account Created for ${username} Please click Login`)
+      this.toggleNewUser()
       this.handleSend();
     } catch (err) {
       alert(err.response.request.response);
@@ -89,7 +88,7 @@ class Auth extends Component {
                 <input
                   name="password"
                   value={password}
-                  type="password"
+                  // type="password"
                   placeholder="password"
                   onChange={(e) => this.changeHanderl(e)}
                 />

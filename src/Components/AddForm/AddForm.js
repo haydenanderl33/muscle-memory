@@ -14,6 +14,7 @@ const AddForm = (props) => {
     axios
       .post(`/api/workouts/add/${props.user.userId}`, {workout_name, set, rep, weight })
       .then(res => props.history.push("/home"))
+      
       .catch((err) => console.log(err));
   };
 

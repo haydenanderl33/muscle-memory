@@ -17,6 +17,7 @@ class Home extends Component {
       .get(`/api/workouts/${this.props.user.userId}`)
       .then((res) => {
         this.setState({ workouts: res.data });
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
@@ -41,6 +42,8 @@ class Home extends Component {
       .delete(`/api/workouts/delete/${ws_id}`)
       .then((res) => {
         this.getWorkouts();
+        window.location.reload();
+        console.log(ws_id);
       })
       .catch((err) => console.log(err.response.request.response));
   };
