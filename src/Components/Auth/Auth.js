@@ -32,7 +32,6 @@ class Auth extends Component {
     try {
       const user = await axios.post("/auth/login", { email, password });
       this.props.loginUser(user.data);
-      this.handleSend();
       this.props.history.push("/home");
     } catch (err) {
       alert(err.response.request.response);
@@ -47,9 +46,11 @@ class Auth extends Component {
         username,
         password,
       });
-      this.props.loginUser(user.data);
+      const user2 = await axios.post("/auth/login", { email, password });
+      this.props.loginUser(user2.data);
       alert(`New Account Created for ${username}`)
       this.props.history.push("/home");
+      this.handleSend();
     } catch (err) {
       alert(err.response.request.response);
     }
