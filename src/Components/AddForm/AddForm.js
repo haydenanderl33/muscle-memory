@@ -4,7 +4,7 @@ import {getUser} from '../../redux/reducer'
 import axios from 'axios'
 import "./AddForm.css";
 
-const AddForm = (props) => {
+const AddForm = ({history, user, isLoggedIn})=> {
   const [workout_name, setExcercise] = useState('');
   const [set, setSet] = useState('')
   const [rep, setRep] = useState('')
@@ -12,8 +12,8 @@ const AddForm = (props) => {
 
   const addWorkout = () => {
     axios
-      .post(`/api/workouts/add/${props.user.userId}`, {workout_name, set, rep, weight })
-      .then(res => props.history.push("/home"))
+      .post(`/api/workouts/add/${user.userId}`, {workout_name, set, rep, weight })
+      .then(res => history.push("/home"))
       
       .catch((err) => console.log(err));
   };
@@ -27,7 +27,7 @@ const AddForm = (props) => {
 
 
     return (<div>
-      {props.isLoggedIn ? ( 
+      {isLoggedIn ? ( 
       <div className="addForm">
         <input
           name="exercise"

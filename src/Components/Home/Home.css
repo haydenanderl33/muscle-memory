@@ -1,0 +1,10 @@
+.skeletonContainer{
+    display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 350px;
+  width: 300px;
+  margin: auto;
+  margin-top: 15px;
+}

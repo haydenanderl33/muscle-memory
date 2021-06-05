@@ -1,78 +1,59 @@
-import React, { Component } from "react";
+import { useState, useEffect } from "react";
+import "./Home.css";
 import Workouts from "../Workouts/Workouts";
 import { connect } from "react-redux";
 import axios from "axios";
+import Skeleton from "react-loading-skeleton";
 import { getUser } from "../../redux/reducer";
 
-class Home extends Component {
-  constructor(props) {
-    super(props);
+function Home({ user }) {
+  const [workouts, setWorkouts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-    this.state = {
-      workouts: [],
-    };
-  }
-  componentDidMount() {
-    axios
-      .get(`/api/workouts/${this.props.user.userId}`)
-      .then((res) => {
-        this.setState({ workouts: res.data });
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.user.userId !== this.props.user.userId) {
-      axios
-        .get(`/api/workouts/${this.props.user.userId}`)
+  useEffect(() => {
+    setLoading(true);
+    const getWorkouts = async () =>
+      await axios
+        .get(`/api/workouts/${user.userId}`)
         .then((res) => {
-          this.setState({ workouts: res.data });
+          setWorkouts(res.data);
+          setLoading(false);
         })
         .catch((err) => {
           console.log(err);
+          setLoading(false);
         });
-    }
-  }
+    getWorkouts();
+  }, [user.userId]);
 
-  deleteWorkout = (ws_id) => {
-    axios
-      .delete(`/api/workouts/delete/${ws_id}`)
-      .then((res) => {
-        this.getWorkouts();
-        window.location.reload();
-        console.log(ws_id);
-      })
-      .catch((err) => console.log(err.response.request.response));
+  const deleteWorkout = async (ws_id) => {
+    await axios.delete(`/api/workouts/delete/${ws_id}`);
+    window.location.reload();
   };
+  const mappedWorkouts = workouts.map((workout, ws_id) => (
+    <Workouts key={ws_id} workout={workout} deleteWorkout={deleteWorkout} />
+  ));
 
-  getWorkouts = () => {
-    axios
-      .get(`/api/workouts/${this.props.user.userId}`)
-      .then((res) => {
-        this.setState({ workouts: res.data });
-      })
-      .catch((err) => {
-        console.log("It's just the componentDidMount");
-      });
-  };
+  const loadingSkeleton = (
+    <div className="skeletonContainer">
+      <Skeleton
+        count={3}
+        style={{ height: "100px", width: "300px", marginTop: "15px" }}
+      />
+    </div>
+  );
 
-  render() {
-    const { workouts } = this.state;
-    const mappedWorkouts = workouts.map((workout, ws_id) => {
-      return (
-        <Workouts
-          key={workout.ws_id}
-          workout={workout}
-          deleteWorkout={this.deleteWorkout}
-        />
-      );
-    });
+  console.log("mappedWorkouts", mappedWorkouts);
 
-    return <div className="workouts">{mappedWorkouts}</div>;
-  }
+  return (
+    <>
+      {mappedWorkouts.length === 0 ? (
+        <div className="wwR">Workout Records will show here</div>
+      ) : null}
+      <>{loading ? loadingSkeleton : null}</>
+      <>{mappedWorkouts}</>
+    </>
+  );
 }
 const mapDispatchToProps = {
   getUser,
@@ -80,13 +61,12 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (reduxState) => {
   const { user, isLoggedIn } = reduxState.userReducer;
-  const {metGoals} = reduxState.goalReducer
+  const { metGoals } = reduxState.goalReducer;
   return {
     user,
     isLoggedIn,
-    metGoals
+    metGoals,
   };
-  
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

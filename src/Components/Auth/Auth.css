@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   background-color: rebeccapurple;
-  background-image: url("/src/brooklyn-gym-generic-file-covidjpg.jpg");
+  background-image: url("/src/gym-background-home.jpg");
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
