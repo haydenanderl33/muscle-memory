@@ -13,7 +13,6 @@ const nodemail = require('./Controllers/emailController')
 const stripe = require('stripe')(SECRET_KEY)
 const cors = require('cors');
 const bodyParser = require('body-parser');
-// const YOUR_DOMAIN = 'http://localhost:5555';
 
 const app = express()
 app.use(express.static(`${__dirname}/../build`))
