@@ -28,101 +28,108 @@ class Auth extends Component {
 
   login = async (e) => {
     e.preventDefault();
-    const { email, password } = this.state;
-    try {
-      const user = await axios.post("/auth/login", { email, password });
-      this.props.loginUser(user.data);
-      this.props.history.push("/home");
-    } catch (err) {
-      alert(err.response.request.response);
-    }
+    
+    return alert('Login unavailable')
+    // const { email, password } = this.state;
+    // try {
+    //   const user = await axios.post("/auth/login", { email, password });
+    //   this.props.loginUser(user.data);
+    //   this.props.history.push("/home");
+    // } catch (err) {
+    //   alert(err.response.request.response);
+    // }
   };
   register = async (e) => {
     e.preventDefault();
-    const { email, username, password } = this.state;
-    try {
-      const user = await axios.post("/auth/register", {
-        email,
-        username,
-        password,
-      });
-      // this.props.loginUser(user.data);
-      alert(`New Account Created for ${username} Please click Login`)
-      this.toggleNewUser()
-      this.handleSend();
-    } catch (err) {
-      alert(err.response.request.response);
-    }
+    return alert('Login unavailable')
+    // const { email, username, password } = this.state;
+    // try {
+    //   const user = await axios.post("/auth/register", {
+    //     email,
+    //     username,
+    //     password,
+    //   });
+    //   // this.props.loginUser(user.data);
+    //   alert(`New Account Created for ${username} Please click Login`);
+    //   this.toggleNewUser();
+    //   this.handleSend();
+    // } catch (err) {
+    //   alert(err.response.request.response);
+    // }
   };
 
   handleSend = async () => {
-    const {email} = this.state
+    const { email } = this.state;
     try {
-      const sentEmail = await axios.post("/api/email", {email})  
-    console.log(sentEmail)}
-    catch (err) {
-      console.log(err)
+      const sentEmail = await axios.post("/api/email", { email });
+      console.log(sentEmail);
+    } catch (err) {
+      console.log(err);
     }
-  }
+  };
 
   render() {
     const { newUser, email, username, password } = this.state;
     return (
-        <div className="authbox">
-          {newUser ? (
-            <div className="authitems">
-              <h2>Muscle Memory</h2>
-              <form className="loginbox" onSubmit={(e) => this.register(e)}>
-                <input
-                  name="email"
-                  value={email}
-                  placeholder="email"
-                  onChange={(e) => this.changeHanderl(e)}
-                />
-                <input
-                  name="username"
-                  value={username}
-                  placeholder="username"
-                  onChange={(e) => this.changeHanderl(e)}
-                />
-                <input
-                  name="password"
-                  value={password}
-                  // type="password"
-                  placeholder="password"
-                  onChange={(e) => this.changeHanderl(e)}
-                />
-                <button>Create Account</button>
-              </form>
-              <button onClick={() => this.toggleNewUser()}>
-                Have an account?
-              </button>
-            </div>
-          ) : (
-            <div className="authitems">
-              <h2>Muscle Memory</h2>
-              <form className="loginbox" onSubmit={(e) => this.login(e)}>
-                <input
-                  name="email"
-                  value={email}
-                  placeholder="email"
-                  onChange={(e) => this.changeHanderl(e)}
-                />
-                <input
-                  name="password"
-                  value={password}
-                  type="password"
-                  placeholder="password"
-                  onChange={(e) => this.changeHanderl(e)}
-                />
-                <button>Login</button>
-              </form>
-              <button onClick={() => this.toggleNewUser()}>
-                Need an account?
-              </button>
-            </div>
-          )}
-        
+      <div className="authbox">
+        <div className="construction">
+          <h2>Website Currently Under Construction</h2>
+          <p>Please try logging in another time</p>
+          <p>Sorry for any inconveinence</p>
+        </div>
+        {newUser ? (
+          <div className="authitems">
+            <h2>Muscle Memory</h2>
+            <form className="loginbox" onSubmit={(e) => this.register(e)}>
+              <input
+                name="email"
+                value={email}
+                placeholder="email"
+                onChange={(e) => this.changeHanderl(e)}
+              />
+              <input
+                name="username"
+                value={username}
+                placeholder="username"
+                onChange={(e) => this.changeHanderl(e)}
+              />
+              <input
+                name="password"
+                value={password}
+                // type="password"
+                placeholder="password"
+                onChange={(e) => this.changeHanderl(e)}
+              />
+              <button>Create Account</button>
+            </form>
+            <button onClick={() => this.toggleNewUser()}>
+              Have an account?
+            </button>
+          </div>
+        ) : (
+          <div className="authitems">
+            <h2>Muscle Memory</h2>
+            <form className="loginbox" onSubmit={(e) => this.login(e)}>
+              <input
+                name="email"
+                value={email}
+                placeholder="email"
+                onChange={(e) => this.changeHanderl(e)}
+              />
+              <input
+                name="password"
+                value={password}
+                type="password"
+                placeholder="password"
+                onChange={(e) => this.changeHanderl(e)}
+              />
+              <button>Login</button>
+            </form>
+            <button onClick={() => this.toggleNewUser()}>
+              Need an account?
+            </button>
+          </div>
+        )}
       </div>
     );
   }
