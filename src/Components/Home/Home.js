@@ -4,7 +4,9 @@ import Workouts from "../Workouts/Workouts";
 import { connect } from "react-redux";
 import axios from "axios";
 import Skeleton from "react-loading-skeleton";
-import { getUser } from "../../redux/reducer";
+import { setUser } from "../../redux/reducer";
+import { withRouter } from "react-router-dom";
+import Header from "../Header/Header";
 
 function Home({ user }) {
   const [workouts, setWorkouts] = useState([]);
@@ -23,7 +25,7 @@ function Home({ user }) {
           console.log(err);
           setLoading(false);
         });
-    getWorkouts();
+    // getWorkouts();
   }, [user.userId]);
 
   const deleteWorkout = async (ws_id) => {
@@ -47,6 +49,7 @@ function Home({ user }) {
 
   return (
     <>
+    <Header/>
       {mappedWorkouts.length === 0 ? (
         <div className="wwR">Workout Records will show here</div>
       ) : null}
@@ -56,7 +59,7 @@ function Home({ user }) {
   );
 }
 const mapDispatchToProps = {
-  getUser,
+  setUser,
 };
 
 const mapStateToProps = (reduxState) => {
@@ -69,4 +72,4 @@ const mapStateToProps = (reduxState) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Home));

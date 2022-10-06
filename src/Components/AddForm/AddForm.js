@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {connect} from 'react-redux'
-import {getUser} from '../../redux/reducer'
+import {setUser} from '../../redux/reducer'
 import axios from 'axios'
 import "./AddForm.css";
 
@@ -66,7 +66,7 @@ const AddForm = ({history, user, isLoggedIn})=> {
   }
 
 const mapDispatchToProps = {
-  getUser,
+  setUser,
 };
 
 const mapStateToProps = (reduxState) => {
@@ -83,7 +83,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(AddForm);
 // import axios from "axios";
 // import React, { Component } from "react";
 // import { connect } from "react-redux";
-// import { getUser } from "../redux/reducer";
+// import { setUser } from "../redux/reducer";
 
 // class AddForm extends Component {
 //   constructor(props) {

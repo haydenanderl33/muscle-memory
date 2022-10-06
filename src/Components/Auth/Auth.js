@@ -1,150 +1,138 @@
-import React, { Component } from "react";
+import { useState } from "react";
+import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
 import { connect } from "react-redux";
-import { loginUser } from "../../redux/reducer";
+import { loginUser, setUser } from "../../redux/reducer";
 import "./Auth.css";
 
-class Auth extends Component {
-  constructor() {
-    super();
+import React from "react";
 
-    this.state = {
-      email: "",
-      username: "",
-      password: "",
-      newUser: false,
-    };
-  }
+const Auth = (props) => {
+  const [newUser, setNewUser] = useState(false);
+  const [values, setValues] = useState({
+    email: "",
+    username: "",
+    password: "",
+  });
 
-  toggleNewUser = () => {
-    this.setState({ newUser: !this.state.newUser });
+  const history = useHistory();
+
+  const toggleNewUser = () => {
+    setNewUser(!newUser);
   };
 
-  changeHanderl = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setValues({
+      ...values,
+      [name]: value,
     });
   };
 
-  login = async (e) => {
+  const login = async (e) => {
     e.preventDefault();
-    
-    return alert('Login unavailable')
-    // const { email, password } = this.state;
-    // try {
-    //   const user = await axios.post("/auth/login", { email, password });
-    //   this.props.loginUser(user.data);
-    //   this.props.history.push("/home");
-    // } catch (err) {
-    //   alert(err.response.request.response);
-    // }
-  };
-  register = async (e) => {
-    e.preventDefault();
-    return alert('Login unavailable')
-    // const { email, username, password } = this.state;
-    // try {
-    //   const user = await axios.post("/auth/register", {
-    //     email,
-    //     username,
-    //     password,
-    //   });
-    //   // this.props.loginUser(user.data);
-    //   alert(`New Account Created for ${username} Please click Login`);
-    //   this.toggleNewUser();
-    //   this.handleSend();
-    // } catch (err) {
-    //   alert(err.response.request.response);
-    // }
-  };
 
-  handleSend = async () => {
-    const { email } = this.state;
+    // return alert("Login unavailable");
     try {
-      const sentEmail = await axios.post("/api/email", { email });
-      console.log(sentEmail);
+      const user = await axios.post("/api/v1/auth/login", {
+        email: values.email,
+        password: values.password,
+      });
+      sessionStorage.setItem("token", user.data.token);
+      props.setUser(user.data.user);
+      history.push("/home");
     } catch (err) {
-      console.log(err);
+      alert(err.response.request.response);
+    }
+  };
+  const register = async (e) => {
+    e.preventDefault();
+
+
+    try {
+      const user = await axios.post("/api/v1/auth/register", { ...values });
+      sessionStorage.setItem("token", user.data.token);
+      console.log(user);
+      props.setUser(user.data.user);
+      history.push("/home");
+    } catch (err) {
+      alert(err.response.request.response);
     }
   };
 
-  render() {
-    const { newUser, email, username, password } = this.state;
-    return (
-      <div className="authbox">
-        <div className="construction">
-          <h2>Website Currently Under Construction</h2>
-          <p>Please try logging in another time</p>
-          <p>Sorry for any inconveinence</p>
+  return (
+    <div className="authbox">
+      {/* <div className="construction">
+      <h2>Website Currently Under Construction</h2>
+      <p>Please try logging in another time</p>
+      <p>Sorry for any inconveinence</p>
+    </div> */}
+      {newUser ? (
+        <div className="authitems">
+          <h2>Muscle Memory</h2>
+          <form className="loginbox" onSubmit={(e) => register(e)}>
+            <input
+              name="email"
+              value={values.email}
+              placeholder="email"
+              onChange={handleInputChange}
+            />
+            <input
+              name="username"
+              value={values.username}
+              placeholder="username"
+              onChange={handleInputChange}
+              maxLength="100"
+            />
+            <input
+              name="password"
+              value={values.password}
+              // type="password"
+              placeholder="password"
+              onChange={handleInputChange}
+            />
+            <button>Create Account</button>
+          </form>
+          <button onClick={() => toggleNewUser()}>Have an account?</button>
         </div>
-        {newUser ? (
-          <div className="authitems">
-            <h2>Muscle Memory</h2>
-            <form className="loginbox" onSubmit={(e) => this.register(e)}>
-              <input
-                name="email"
-                value={email}
-                placeholder="email"
-                onChange={(e) => this.changeHanderl(e)}
-              />
-              <input
-                name="username"
-                value={username}
-                placeholder="username"
-                onChange={(e) => this.changeHanderl(e)}
-              />
-              <input
-                name="password"
-                value={password}
-                // type="password"
-                placeholder="password"
-                onChange={(e) => this.changeHanderl(e)}
-              />
-              <button>Create Account</button>
-            </form>
-            <button onClick={() => this.toggleNewUser()}>
-              Have an account?
-            </button>
+      ) : (
+        <div className="authitems">
+          <h2>Muscle Memory</h2>
+          <form className="loginbox" onSubmit={(e) => login(e)}>
+            <input
+              name="email"
+              value={values.email}
+              placeholder="email"
+              onChange={handleInputChange}
+            />
+            <input
+              name="password"
+              value={values.password}
+              type="password"
+              placeholder="password"
+              onChange={handleInputChange}
+            />
+            <button>Login</button>
+          </form>
+          <div className="auth-btn-cont">
+            <Link to="/forgot-password" onClick={() => toggleNewUser()}>Forgot Password?</Link>
+            <button onClick={() => toggleNewUser()}>Need an account?</button>
           </div>
-        ) : (
-          <div className="authitems">
-            <h2>Muscle Memory</h2>
-            <form className="loginbox" onSubmit={(e) => this.login(e)}>
-              <input
-                name="email"
-                value={email}
-                placeholder="email"
-                onChange={(e) => this.changeHanderl(e)}
-              />
-              <input
-                name="password"
-                value={password}
-                type="password"
-                placeholder="password"
-                onChange={(e) => this.changeHanderl(e)}
-              />
-              <button>Login</button>
-            </form>
-            <button onClick={() => this.toggleNewUser()}>
-              Need an account?
-            </button>
-          </div>
-        )}
-      </div>
-    );
-  }
-}
+        </div>
+      )}
+    </div>
+  );
+};
 
 const mapDispatchToProps = {
   loginUser,
+  setUser,
 };
 
 const mapStateToProps = (reduxState) => {
-  const { user, isLoggedIn } = reduxState;
-  return {
-    user,
-    isLoggedIn,
-  };
+  console.log(reduxState);
+  return reduxState.userReducer.user;
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Auth);
