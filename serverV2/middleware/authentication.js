@@ -4,7 +4,7 @@ const {StatusCodes} = require('http-status-codes')
 const auth = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
-  console.log(authHeader)
+  // console.log(authHeader)
 
   if (!authHeader || !authHeader.startsWith("Bearer")) {
     console.log("Authentication Invalid");

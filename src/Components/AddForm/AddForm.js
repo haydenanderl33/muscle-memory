@@ -1,69 +1,118 @@
-import {useState} from 'react';
-import {connect} from 'react-redux'
-import {setUser} from '../../redux/reducer'
-import axios from 'axios'
+import { useState } from "react";
+import { connect } from "react-redux";
+import { setUser } from "../../redux/reducer";
+import axios from "axios";
 import "./AddForm.css";
+import Header from "../Header/Header";
 
-const AddForm = ({history, user, isLoggedIn})=> {
-  const [workout_name, setExcercise] = useState('');
-  const [set, setSet] = useState('')
-  const [rep, setRep] = useState('')
-  const [weight, setWeight] = useState('')
+const AddForm = ({ history, user, isLoggedIn }) => {
+  const [exercise, setExcercise] = useState({
+    workout_name: "",
+    workout_set: "",
+    workout_rep: "",
+    workout_weight: "",
+  });
 
-  const addWorkout = () => {
-    axios
-      .post(`/api/workouts/add/${user.userId}`, {workout_name, set, rep, weight })
-      .then(res => history.push("/home"))
-      
-      .catch((err) => console.log(err));
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setExcercise({
+      ...exercise,
+      [name]: value,
+    });
   };
 
-  const cancel = () => {
-    setExcercise('')
-    setSet('')
-    setRep('')
-    setWeight('')
-  }
+  const addWorkout = async (e) => {
+    e.preventDefault();
+    let token = sessionStorage.getItem("token");
 
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
 
-    return (<div>
-      {isLoggedIn ? ( 
-      <div className="addForm">
+    const workoutObj = {
+      workout_name: exercise.workout_name,
+      workout_set: exercise.workout_set,
+      workout_rep: exercise.workout_rep,
+      workout_weight: exercise.workout_weight,
+    };
+    if (
+      workoutObj.workout_name === "" ||
+      workoutObj.workout_set === "" ||
+      workoutObj.workout_rep === "" ||
+      workoutObj.workout_weight === ""
+    ) {
+      return alert("Please have a value in each field");
+    }
+    if (isNaN(workoutObj.workout_rep)) {
+      return alert("Please have a number value in 'Sets' field ");
+    }
+    if (isNaN(workoutObj.workout_set)) {
+      return alert("Please have a number value in 'Reps' field ");
+    }
+    if (isNaN(workoutObj.workout_weight)) {
+      return alert("Please have a number value in 'Weight' field ");
+    }
+
+    console.log(workoutObj);
+    try {
+      const res = await axios.post("/api/v1/workouts", workoutObj, config);
+    } catch (err) {
+      alert(err.response.request.response);
+    }
+
+    alert("Workout Created");
+    setExcercise({
+      workout_name: "",
+      workout_set: "",
+      workout_rep: "",
+      workout_weight: "",
+    });
+  };
+
+  const cancel = () => {};
+
+  return (
+    <div>
+      <Header />
+      <form className="addForm" onSubmit={(e) => addWorkout(e)}>
         <input
-          name="exercise"
+          name="workout_name"
           placeholder="Exercise"
           type="text"
-          value={workout_name}
-          onChange={event => setExcercise(event.target.value)}
+          value={exercise.workout_name}
+          onChange={handleInputChange}
         />
         <input
-          name="set"
+          name="workout_set"
           placeholder="Sets"
-          value={set}
-          onChange={event => setSet(event.target.value)}
+          value={exercise.workout_set}
+          onChange={handleInputChange}
         />
         <input
-          name="rep"
+          name="workout_rep"
           placeholder="Reps"
-          value={rep}
-          onChange={event => setRep(event.target.value)}
+          value={exercise.workout_rep}
+          onChange={handleInputChange}
         />
         <input
-          name="weight"
+          name="workout_weight"
           placeholder="Weight"
-          value={weight}
-          onChange={event => setWeight(event.target.value)}
+          value={exercise.workout_weight}
+          onChange={handleInputChange}
         />
         <div className="btns">
-          <button id="addbtn" onClick={() => addWorkout()}>Add</button>
-          <button id="cancelbtn" onClick={() => cancel()}>Cancel</button>
+          <button id="addbtn" onClick={(e) => addWorkout(e)}>
+            Add
+          </button>
+          <button id="cancelbtn" onClick={() => cancel()}>
+            Cancel
+          </button>
         </div>
-      </div>) :(
-        <div>Not Logged In there Sonny</div>
-      )}
-      </div>
-    );
-  }
+      </form>
+    </div>
+  );
+};
 
 const mapDispatchToProps = {
   setUser,
@@ -78,7 +127,6 @@ const mapStateToProps = (reduxState) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddForm);
-
 
 // import axios from "axios";
 // import React, { Component } from "react";

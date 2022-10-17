@@ -40,6 +40,7 @@ const Auth = (props) => {
         password: values.password,
       });
       sessionStorage.setItem("token", user.data.token);
+      sessionStorage.setItem("username", user.data.user.username)
       props.setUser(user.data.user);
       history.push("/home");
     } catch (err) {
@@ -53,7 +54,6 @@ const Auth = (props) => {
     try {
       const user = await axios.post("/api/v1/auth/register", { ...values });
       sessionStorage.setItem("token", user.data.token);
-      console.log(user);
       props.setUser(user.data.user);
       history.push("/home");
     } catch (err) {
@@ -131,7 +131,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (reduxState) => {
-  console.log(reduxState);
+  // console.log(reduxState);
   return reduxState.userReducer.user;
 };
 

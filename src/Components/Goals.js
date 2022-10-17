@@ -2,6 +2,7 @@ import {connect} from 'react-redux'
 import {goals, resetgoals} from '../redux/goalsReducer'
 import Stripe from './Stripe'
 import "./Goals.css";
+import Header from './Header/Header';
 
 const Goals = (props) => {
 
@@ -19,6 +20,7 @@ const reset = () => {
 
   return(
         <div>
+          <Header/>
           {props.metGoals ? (
             <div>
               <h2>Good Job!</h2>

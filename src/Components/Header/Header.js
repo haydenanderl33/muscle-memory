@@ -7,23 +7,28 @@ import { useHistory } from "react-router-dom";
 
 const Header = (props) => {
   const [toggle, setToggle] = useState(false);
+  const [username, setUserName] = useState("")
 
-  const history = useHistory()
+  const history = useHistory();
 
   const { setUser } = props;
+  const userName = sessionStorage.getItem("username")
+
+  console.log(username)
 
   const handleLogout = () => {
     sessionStorage.setItem("token", "");
+    sessionStorage.setItem("username", "");
     const user = {};
     setUser(user);
-    history.push("/")
+    history.push("/");
   };
 
   if (window.location !== "/") {
     return (
       <header>
         <h2 className="logo">Muscle Memory</h2>
-        <h3 className="username">{props.user.username}</h3>
+        <h3 className="username">{userName}</h3>
         {!toggle ? (
           <div>
             <div onClick={() => setToggle(!toggle)} className="menubtn">
@@ -54,7 +59,7 @@ const Header = (props) => {
                   AddNew
                 </Link>
               </div>
-              <div>
+              {/* <div>
                 <Link
                   style={{ color: "#F76C5E" }}
                   to="/instructions"
@@ -62,7 +67,7 @@ const Header = (props) => {
                 >
                   Instructions
                 </Link>
-              </div>
+              </div> */}
               <div>
                 <Link
                   style={{ color: "#F76C5E" }}
@@ -96,11 +101,11 @@ const Header = (props) => {
             AddNew
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link style={{ color: "white" }} to="/instructions" className="Navls">
             Instructions
           </Link>
-        </li>
+        </li> */}
         <li>
           <Link style={{ color: "white" }} to="/goals" className="Navls">
             Goals

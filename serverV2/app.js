@@ -5,6 +5,8 @@ var cors = require('cors')
 const connectDB = require('./db/connect')
 const passwordRouter = require('./routes/password-route')
 const authRouter = require('./routes/auth-route')
+const workoutRouter = require('./routes/workout-route')
+const authenticate = require('./middleware/authentication')
 const { SERVER_PORT } = process.env
 
 
@@ -17,6 +19,7 @@ app.use(express.json())
 
 app.use('/api/v1/password', passwordRouter)
 app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/workouts', authenticate, workoutRouter)
 
 const port = SERVER_PORT || 5555
 

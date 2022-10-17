@@ -12,28 +12,43 @@ function Home({ user }) {
   const [workouts, setWorkouts] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
+  const getWorkouts = async () => {
     setLoading(true);
-    const getWorkouts = async () =>
-      await axios
-        .get(`/api/workouts/${user.userId}`)
-        .then((res) => {
-          setWorkouts(res.data);
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.log(err);
-          setLoading(false);
-        });
-    // getWorkouts();
-  }, [user.userId]);
+    let token = sessionStorage.getItem("token");
 
-  const deleteWorkout = async (ws_id) => {
-    await axios.delete(`/api/workouts/delete/${ws_id}`);
-    window.location.reload();
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    try {
+      const res = await axios.get("/api/v1/workouts", config);
+
+      setWorkouts(res.data.workouts);
+    } catch (error) {
+      alert(error.response.request.response);
+    }
   };
-  const mappedWorkouts = workouts.map((workout, ws_id) => (
-    <Workouts key={ws_id} workout={workout} deleteWorkout={deleteWorkout} />
+
+  useEffect(() => {
+    getWorkouts();
+  }, []);
+
+  const deleteWorkout = async (workout_id) => {
+
+    let token = sessionStorage.getItem("token");
+
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    try {
+      const res = await axios.delete(`/api/v1/workouts/${workout_id}`, config);
+      getWorkouts()
+    } catch (error) {
+      alert(error.response.request.response);
+    }
+    // await
+  };
+  const mappedWorkouts = workouts.map((workout, _id) => (
+    <Workouts key={_id} workout={workout} deleteWorkout={deleteWorkout} />
   ));
 
   const loadingSkeleton = (
@@ -45,16 +60,14 @@ function Home({ user }) {
     </div>
   );
 
-  console.log("mappedWorkouts", mappedWorkouts);
-
   return (
     <>
-    <Header/>
-      {mappedWorkouts.length === 0 ? (
-        <div className="wwR">Workout Records will show here</div>
-      ) : null}
-      <>{loading ? loadingSkeleton : null}</>
-      <>{mappedWorkouts}</>
+      <Header />
+      {workouts.length === 0 ? (
+        <>Workouts will display here</>
+      ) : (
+        <>{mappedWorkouts}</>
+      )}
     </>
   );
 }

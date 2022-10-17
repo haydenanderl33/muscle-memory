@@ -2,47 +2,36 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import InstructionList from './InstructionsList'
+import Header from "./Header/Header";
 
 const Instructions = (props) => {
-  const [instructions, setInstructions] = useState([]);
+  const [instructions, setInstructions] = useState([
 
-  useEffect(() => {
-    const getInstructions = async () => {
-      try {
-        const res = await axios.get("api/instructions");
-        setInstructions(res.data);
-      }
-      catch (err) {
-        console.log(err)
-      }
-    };
-    getInstructions();
-  }, []);
+
+  ]);
+
+  
 
 
 
-  const editInstructions = async (workout_id, instructions) =>{
-  try {
-      const res = await axios.put(`/api/instructions/${workout_id}`,{instructions})
-      console.log(instructions)
-      setInstructions(res.data)
-  } catch (err) {
-    console.log(err)
-  }
-};
+ 
 
 
 
-  const mappedInstructions = instructions.map( (instruction , index) =>{
+
+  const mappedInstructions = instructions.map( (instructions , index) =>{
       return (
-        <InstructionList key={instruction.workout_id} instruction={instruction} editInstructions={editInstructions}/>
+        <InstructionList key={index} instructionVideoUrls={instructions}/>
       ) 
   })
 
   return <div>
+    <Header/>
 <div>{mappedInstructions}</div>
   </div>;
 };
+
+
 export default Instructions;
 
 

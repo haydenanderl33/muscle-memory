@@ -2,15 +2,6 @@ const mongoose = require("mongoose");
 
 const WorkoutSchema = new mongoose.Schema(
   {
-    // pokemonCardObj: {
-    //     type: Object,
-    //     required: [true, "Please provide Pokemon Card Object"]
-    // },
-    workout_id: {
-      type: String,
-      required: [true, "Please provide card id"],
-      maxlength: 50,
-    },
     workout_name: {
       type: String,
       required: [true, "Please provide workout name"],

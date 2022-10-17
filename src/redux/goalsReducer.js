@@ -12,7 +12,6 @@ export function goals(metGoals){
     }
 }
 export function resetgoals(){
-    // console.log('hit')
     return {
         type: RESET_GOALS,
         payload: initialState
