@@ -21,7 +21,7 @@ const ForgotPassword = () => {
   const sendResetPasswordLink = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/v1/password/forgotPassword", {
+      await axios.post("/api/v1/password/forgotPassword", {
         email: values.email,
       });
 

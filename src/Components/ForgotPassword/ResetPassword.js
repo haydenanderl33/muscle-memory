@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./ForgotPassword.css";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -77,9 +77,6 @@ const ResetPassword = () => {
           />
           <button>Reset Password</button>
         </form>
-        {/* <div className="auth-btn-cont">
-          <Link to="/">Back To Login</Link>
-        </div> */}
       </div>
       <Toaster />
     </div>
