@@ -1,5 +1,3 @@
-import axios from "axios";
-
 const initialState = {
   user: {},
   isLoggedIn: false,
@@ -27,7 +25,7 @@ export function setUser(userObj) {
 
   return {
     type: SET_USER,
-    payload: {...userObj},
+    payload: { ...userObj },
   };
 }
 

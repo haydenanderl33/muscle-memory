@@ -74,3 +74,8 @@
     }
   }
 }
+
+.date{
+  display: flex;
+  color: black;
+}
