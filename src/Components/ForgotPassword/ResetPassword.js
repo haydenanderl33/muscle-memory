@@ -2,15 +2,15 @@ import { useState } from "react";
 import "./ForgotPassword.css";
 import { Link, useParams, useHistory } from "react-router-dom";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 const ResetPassword = () => {
-
-  const params = useParams()
-  const history = useHistory()
+  const params = useParams();
+  const history = useHistory();
 
   const [values, setValues] = useState({
     newPassword: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
 
   const handleInputChange = (e) => {
@@ -25,30 +25,33 @@ const ResetPassword = () => {
   const resetPassword = async (e) => {
     e.preventDefault();
 
-
-
-    const {newPassword, confirmPassword} = values
+    const { newPassword, confirmPassword } = values;
 
     // if(newPassword.length > 6){
     //   return alert("Password Length Must Be 6 Or More Characters!")
     // }
-    if(newPassword !== confirmPassword && confirmPassword !== newPassword){
-      return alert("Passwords Do Not Match!")
+    if (newPassword !== confirmPassword && confirmPassword !== newPassword) {
+      return toast.error("Passwords Do Not Match!");
     }
 
-
-    if(newPassword.length < 6){
-      return alert("New Password Must Be At Least 6 Characters")
+    if (newPassword.length < 6) {
+      return toast.error("New Password Must Be At Least 6 Characters");
     }
 
-    let token = params.token
+    let token = params.token;
 
     try {
-      const reset = await axios.patch(`/api/v1/password/resetPassword/${token}`, {
-        newPassword: values.newPassword,
-      });
-      alert(reset.data)
-      history.push("/")
+      const reset = await axios.patch(
+        `/api/v1/password/resetPassword/${token}`,
+        {
+          newPassword: values.newPassword,
+        }
+      );
+      toast.success("Password Updated");
+
+      setTimeout(() => {
+        history.push("/");
+      }, 3000);
     } catch (err) {
       alert(err.response.request.response);
     }
@@ -78,6 +81,7 @@ const ResetPassword = () => {
           <Link to="/">Back To Login</Link>
         </div> */}
       </div>
+      <Toaster />
     </div>
   );
 };

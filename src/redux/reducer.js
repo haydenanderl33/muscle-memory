@@ -21,14 +21,12 @@ export function logoutUser() {
 }
 
 export function setUser(userObj) {
-  console.log("userObj:", userObj);
-
   return {
     type: SET_USER,
     payload: { ...userObj },
   };
 }
-
+// eslint-disable-next-line
 export default function (state = initialState, action) {
   switch (action.type) {
     case LOGIN_USER:

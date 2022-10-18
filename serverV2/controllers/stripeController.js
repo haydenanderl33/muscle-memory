@@ -1,8 +1,8 @@
 const { StatusCodes } = require("http-status-codes");
-const { CLIENT_URL } = process.env;
+const { CLIENT_URL, SECRET_KEY } = process.env;
 
 const stripe = require("stripe")(
-  "sk_test_51HwaqHDNjLMWEToxYdHx96txk4GikzTb6pu5OloetDXxFFAon8hfE6AqfNf6ziBqw38ecpdoWDCxhbRGN6Iv52oQ001ZTWGHtx"
+  SECRET_KEY
 );
 
 

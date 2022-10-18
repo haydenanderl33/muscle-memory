@@ -33,14 +33,13 @@ const Auth = (props) => {
   const login = async (e) => {
     e.preventDefault();
 
-    // return alert("Login unavailable");
     try {
       const user = await axios.post("/api/v1/auth/login", {
         email: values.email,
         password: values.password,
       });
       sessionStorage.setItem("token", user.data.token);
-      sessionStorage.setItem("username", user.data.user.username)
+      sessionStorage.setItem("username", user.data.user.username);
       props.setUser(user.data.user);
       history.push("/home");
     } catch (err) {
@@ -49,7 +48,6 @@ const Auth = (props) => {
   };
   const register = async (e) => {
     e.preventDefault();
-
 
     try {
       const user = await axios.post("/api/v1/auth/register", { ...values });
@@ -116,7 +114,9 @@ const Auth = (props) => {
             <button>Login</button>
           </form>
           <div className="auth-btn-cont">
-            <Link to="/forgot-password" onClick={() => toggleNewUser()}>Forgot Password?</Link>
+            <Link to="/forgot-password" onClick={() => toggleNewUser()}>
+              Forgot Password?
+            </Link>
             <button onClick={() => toggleNewUser()}>Need an account?</button>
           </div>
         </div>

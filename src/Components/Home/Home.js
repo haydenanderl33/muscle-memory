@@ -3,17 +3,18 @@ import "./Home.css";
 import Workouts from "../Workouts/Workouts";
 import { connect } from "react-redux";
 import axios from "axios";
-import Skeleton from "react-loading-skeleton";
+// import Skeleton from "react-loading-skeleton";
 import { setUser } from "../../redux/reducer";
 import { withRouter } from "react-router-dom";
 import Header from "../Header/Header";
+import toast, { Toaster } from "react-hot-toast";
 
 function Home({ user }) {
   const [workouts, setWorkouts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const getWorkouts = async () => {
-    setLoading(true);
+    // setLoading(true);
     let token = sessionStorage.getItem("token");
 
     const config = {
@@ -40,7 +41,8 @@ function Home({ user }) {
       headers: { Authorization: `Bearer ${token}` },
     };
     try {
-      const res = await axios.delete(`/api/v1/workouts/${workout_id}`, config);
+      await axios.delete(`/api/v1/workouts/${workout_id}`, config);
+      toast.success('Workout Deleted')
       getWorkouts()
     } catch (error) {
       alert(error.response.request.response);
@@ -51,14 +53,14 @@ function Home({ user }) {
     <Workouts key={_id} workout={workout} deleteWorkout={deleteWorkout} />
   ));
 
-  const loadingSkeleton = (
-    <div className="skeletonContainer">
-      <Skeleton
-        count={3}
-        style={{ height: "100px", width: "300px", marginTop: "15px" }}
-      />
-    </div>
-  );
+  // const loadingSkeleton = (
+  //   <div className="skeletonContainer">
+  //     <Skeleton
+  //       count={3}
+  //       style={{ height: "100px", width: "300px", marginTop: "15px" }}
+  //     />
+  //   </div>
+  // );
 
   return (
     <>
@@ -68,6 +70,7 @@ function Home({ user }) {
       ) : (
         <>{mappedWorkouts}</>
       )}
+      <Toaster/>
     </>
   );
 }

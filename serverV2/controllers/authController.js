@@ -64,11 +64,11 @@ const login = async (req, res) => {
   const userEmail = await User.findOne({ email });
 
   if (!userEmail) {
-    res.status(StatusCodes.NOT_FOUND).json("Invalid Credentials, Email");
+   return res.status(StatusCodes.NOT_FOUND).json("Invalid Credentials, Email");
   }
   const isPasswordCorrect = await userEmail.comparePassword(password);
   if (!isPasswordCorrect) {
-    res.status(StatusCodes.NOT_FOUND).json("Invalid Credentials, Password");
+    return res.status(StatusCodes.NOT_FOUND).json("Invalid Credentials, Password");
   }
   const token = userEmail.createJWT();
   // console.log(token)

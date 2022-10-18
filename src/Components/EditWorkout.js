@@ -5,6 +5,7 @@ import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import "./AddForm/AddForm.css";
 import Header from "./Header/Header";
+import toast, { Toaster } from "react-hot-toast";
 
 const EditWorkout = ({ user, isLoggedIn }) => {
   const { workout_id } = useParams();
@@ -16,6 +17,8 @@ const EditWorkout = ({ user, isLoggedIn }) => {
     workout_rep: "",
     workout_weight: "",
   });
+
+  const [workoutDate, setWorkoutDate] = useState("");
 
   const getWorkout = async () => {
     let token = sessionStorage.getItem("token");
@@ -31,6 +34,9 @@ const EditWorkout = ({ user, isLoggedIn }) => {
         workout_rep: res.data.workout.workout_rep,
         workout_weight: res.data.workout.workout_weight,
       };
+      let timestamp = res.data.workout.createdAt;
+      let date = new Date(timestamp);
+      setWorkoutDate(`${date.getMonth() +1}/${date.getDate()}/${date.getFullYear()}`)
       setExcercise(workoutObj);
     } catch (error) {
       alert(error.response.request.response);
@@ -38,7 +44,7 @@ const EditWorkout = ({ user, isLoggedIn }) => {
   };
 
   const updateWorkout = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     let token = sessionStorage.getItem("token");
 
@@ -52,33 +58,34 @@ const EditWorkout = ({ user, isLoggedIn }) => {
       exercise.workout_rep === "" ||
       exercise.workout_weight === ""
     ) {
-      return alert("Please have a value in each field");
+      return toast.error("Please have a value in each field");
     }
     if (isNaN(exercise.workout_rep)) {
-      return alert("Please have a number value in 'Sets' field ");
+      return toast.error("Please have a number value in 'Sets' field ");
     }
     if (isNaN(exercise.workout_set)) {
-      return alert("Please have a number value in 'Reps' field ");
+      return toast.error("Please have a number value in 'Reps' field ");
     }
     if (isNaN(exercise.workout_weight)) {
-      return alert("Please have a number value in 'Weight' field ");
+      return toast.error("Please have a number value in 'Weight' field ");
     }
     try {
-      const res = await axios.patch(
+       await axios.patch(
         `/api/v1/workouts/${workout_id}`,
         exercise,
         config
       );
-
     } catch (error) {
       alert(error.response.request.response);
     }
-    alert("Workout Updated");
+    toast.success("Workout Updated");
     history.push("/home");
   };
 
   useEffect(() => {
     getWorkout();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleInputChange = (e) => {
@@ -98,7 +105,7 @@ const EditWorkout = ({ user, isLoggedIn }) => {
     <div>
       <Header />
       <form className="addForm" onSubmit={(e) => updateWorkout(e)}>
-        <h2>Editing workout {workout_id}</h2>
+        <h2>Editing workout created on {workoutDate}</h2>
         <input
           name="workout_name"
           placeholder="Exercise"
@@ -133,6 +140,7 @@ const EditWorkout = ({ user, isLoggedIn }) => {
           </button>
         </div>
       </form>
+      <Toaster/>
     </div>
   );
 };

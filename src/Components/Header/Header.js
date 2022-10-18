@@ -2,19 +2,18 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutUser, setUser } from "../../redux/reducer";
-import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const Header = (props) => {
-  const [toggle, setToggle] = useState(false);
-  const [username, setUserName] = useState("")
+  const [menuOpen, setMenuOpen] = useState(false);
+
+
 
   const history = useHistory();
 
   const { setUser } = props;
-  const userName = sessionStorage.getItem("username")
-
-  console.log(username)
+  const userName = sessionStorage.getItem("username");
 
   const handleLogout = () => {
     sessionStorage.setItem("token", "");
@@ -24,108 +23,54 @@ const Header = (props) => {
     history.push("/");
   };
 
-  if (window.location !== "/") {
-    return (
-      <header>
-        <h2 className="logo">Muscle Memory</h2>
-        <h3 className="username">{userName}</h3>
-        {!toggle ? (
-          <div>
-            <div onClick={() => setToggle(!toggle)} className="menubtn">
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-          </div>
-        ) : (
-          <div>
-            <div onClick={() => setToggle(!toggle)} className="menubtn">
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-            <div className="dropdownmenu">
-              <div>
-                <Link style={{ color: "#F76C5E" }} to="/home" className="Navls">
-                  Home
-                </Link>
-              </div>
-              <div>
-                <Link
-                  style={{ color: "#F76C5E" }}
-                  to="/addnew"
-                  className="Navls"
-                >
-                  AddNew
-                </Link>
-              </div>
-              {/* <div>
-                <Link
-                  style={{ color: "#F76C5E" }}
-                  to="/instructions"
-                  className="Navls"
-                >
-                  Instructions
-                </Link>
-              </div> */}
-              <div>
-                <Link
-                  style={{ color: "#F76C5E" }}
-                  to="/goals"
-                  className="Navls"
-                >
-                  Goals
-                </Link>
-              </div>
-              <div>
-                <Link
-                  style={{ color: "#F76C5E" }}
-                  to="/"
-                  className="Navls"
-                  onClick={() => handleLogout()}
-                >
-                  Logout
-                </Link>
-              </div>
-            </div>
-          </div>
-        )}
 
-        <li>
-          <Link style={{ color: "white" }} to="/home" className="Navls">
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link style={{ color: "white" }} to="/addnew" className="Navls">
-            AddNew
-          </Link>
-        </li>
-        {/* <li>
-          <Link style={{ color: "white" }} to="/instructions" className="Navls">
-            Instructions
-          </Link>
-        </li> */}
-        <li>
-          <Link style={{ color: "white" }} to="/goals" className="Navls">
-            Goals
-          </Link>
-        </li>
-        <li>
-          <Link
-            style={{ color: "white" }}
-            to="/"
-            className="Navls"
-            onClick={() => handleLogout()}
-          >
-            Logout
-          </Link>
-        </li>
+
+  return (
+    <>
+      <header style={{
+          height: menuOpen > 0 ? '200px' : '90px',
+          
+        }}>
+        <div className="header-wrapper">
+          <div>
+            <h1>Muscle Memory</h1>
+          </div>
+          <div>
+            <h2>{userName}</h2>
+          </div>
+          <nav>
+            <Link to="/home">Home</Link>
+            <Link to="/addnew">Add Workout</Link>
+            <Link to="/goals">Goals</Link>
+            <button onClick={handleLogout}>Logout</button>
+          </nav>
+        </div>
+        <div className="header-wrapper-mobile">
+          <div>
+            <h1>Muscle Memory</h1>
+          </div>
+          <div>
+            <h2>{userName}</h2>
+          </div>
+
+          {menuOpen ? (
+            <nav>
+              <Link to="/home">Home</Link>
+              <Link to="/addnew">Add Workout</Link>
+              <Link to="/goals">Goals</Link>
+              <button onClick={handleLogout}>Logout</button>
+            </nav>
+          ) : (
+            <div className="closedMenu" onClick={() => setMenuOpen(!menuOpen)}>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          )}
+        </div>
       </header>
-    );
-  } else {
-    return <div></div>;
-  }
+    </>
+  );
 };
 
 const mapDispatchToProps = {

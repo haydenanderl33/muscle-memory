@@ -5,7 +5,7 @@ const getAllWorkouts = async (req, res) => {
   const workouts = await Workout.find({
     createdBy: req.user.userId,
   }).sort("createdAt");
-  res.status(StatusCodes.OK).json({ workouts, count: workouts.length });
+ return res.status(StatusCodes.OK).json({ workouts, count: workouts.length });
 };
 const getOneWorkout = async (req, res) => {
   const { userId } = req.user;

@@ -25,6 +25,11 @@
     box-shadow: none;
   }
 }
+@media screen and (max-width: 300px) {
+  .workoutbox {
+    width: 250px;
+  }
+}
 
 .workoutbox h4 {
   margin: 0;

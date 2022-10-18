@@ -10,7 +10,7 @@
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
-  
+
   margin: auto;
 }
 
@@ -21,38 +21,34 @@
   background: orange;
 }
 @media screen and (max-width: 600px) {
-  .authbox{
+  .authbox {
     height: 100%;
     width: 100%;
     /* background-color:black; */
-      background-size: cover;
-      color: white;
-      
+    background-size: cover;
+    color: white;
   }
-} 
+}
 .authitems {
   margin-top: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #361134;
-    box-shadow: 5px 5px 5px #353333;;
-    border-radius: 2%;
-    
-    
-    padding: 15px;
-    
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #361134;
+  box-shadow: 5px 5px 5px #353333;
+  border-radius: 2%;
+  padding: 15px;
+}
+@media screen and (max-width: 600px) {
+  .authitems {
+    background-color: black;
+    color: white;
+    font-size: 3em;
+    box-shadow: none;
+    border-radius: 0;
   }
-  @media screen and (max-width: 600px) {
-      .authitems{
-          background-color:black;
-          color: white;
-          font-size: 3em;
-          box-shadow: none;
-          border-radius: 0;
-      }
-  } 
+}
 .loginbox {
   height: 250px;
   width: 200px;
@@ -60,23 +56,23 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
 }
 
 .authbox button {
-  background-color: #F391A0;
+  background-color: #f391a0;
   cursor: pointer;
 }
 @media screen and (max-width: 600px) {
-  .authbox button{
-      background-color: #F9BB9F ;
+  .authbox button {
+    background-color: #f9bb9f;
   }
-} 
-@media screen and (max-width: 600px){
-.authbox ::-webkit-input-placeholder {
-  /* Chrome/Opera/Safari */
-  color: white;
-}}
+}
+@media screen and (max-width: 600px) {
+  .authbox ::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: white;
+  }
+}
 @media screen and (max-width: 600px) {
   .authbox input {
     height: 30px;
@@ -95,5 +91,14 @@
   justify-content: space-evenly;
 }
 .auth-btn-cont a {
-  color:#F391A0;
+  color: #f391a0;
+}
+
+@media screen and (max-width: 600px) {
+  .auth-btn-cont, .auth-btn-cont a {
+    font-size: 1rem;
+    height: 30px;
+    color: white;
+    
+  }
 }

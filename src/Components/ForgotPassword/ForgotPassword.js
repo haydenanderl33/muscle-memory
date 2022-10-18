@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./ForgotPassword.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 const ForgotPassword = () => {
   const [values, setValues] = useState({
@@ -24,7 +25,7 @@ const ForgotPassword = () => {
         email: values.email,
       });
 
-      alert(`Reset Link Sent!`)
+      toast.success(`Reset Link Sent!`)
      setValues({email: ""})
     } catch (err) {
       alert(err.response.request.response);
@@ -49,6 +50,7 @@ const ForgotPassword = () => {
           <Link to="/">Back To Login</Link>
         </div>
       </div>
+      <Toaster/>
     </div>
   );
 };
