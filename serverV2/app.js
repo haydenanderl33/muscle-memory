@@ -17,8 +17,7 @@ const { SERVER_PORT } = process.env;
 
 const app = express();
 
-
-app.set('trust proxy, 1')
+app.set("trust proxy, 1");
 app.use(
   rateLimiter({
     windowMs: 15 * 60 * 1000,
@@ -26,7 +25,8 @@ app.use(
   })
 );
 app.use(express.json());
-app.use(express.static("public"));
+// app.use(express.static("public"));
+app.use(express.static(`${__dirname}/../build`));
 app.use(helmet());
 app.use(cors());
 app.use(xss());
