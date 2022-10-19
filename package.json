@@ -20,7 +20,9 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-rate-limit": "^6.6.0",
     "express-session": "^1.17.1",
+    "helmet": "^6.0.0",
     "http-status-codes": "^2.2.0",
     "jsonwebtoken": "^8.5.1",
     "massive": "^6.6.1",
@@ -39,7 +41,8 @@
     "redux": "^4.0.5",
     "redux-promise-middleware": "^6.1.2",
     "stripe": "^8.222.0",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "xss-clean": "^0.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
