@@ -41,7 +41,7 @@ const ResetPassword = () => {
     let token = params.token;
 
     try {
-      const reset = await axios.patch(
+      await axios.patch(
         `/api/v1/password/resetPassword/${token}`,
         {
           newPassword: values.newPassword,

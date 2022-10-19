@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "main": "serverV2/app.js",
-  "proxy": "http://localhost:5000/",
+  "proxy": "http://localhost:5555",
   "nodemonConfig": {
     "ignore": [
       "src/*"

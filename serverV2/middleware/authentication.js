@@ -8,6 +8,7 @@ const auth = (req, res, next) => {
 
   if (!authHeader || !authHeader.startsWith("Bearer")) {
     console.log("Authentication Invalid");
+    throw new Error("Authentication Invalid");
   }
   const token = authHeader.split(" ")[1];
   // console.log(token)
@@ -21,7 +22,7 @@ const auth = (req, res, next) => {
     next();
   } catch (error) {
     res.status(StatusCodes.UNAUTHORIZED)
-    throw new Error("Authentication Invalid line 20");
+    throw new Error("Authentication Invalid");
   }
 };
 
