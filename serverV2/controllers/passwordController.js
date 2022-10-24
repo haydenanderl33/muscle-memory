@@ -36,7 +36,8 @@ const forgotPassword = async (req, res) => {
       },
     });
 
-    let link = `${CLIENT_URL}/reset-Password/${token}`;
+    // let link = `${CLIENT_URL}/reset-Password/${token}`;
+    let link = `https://musclememory.me/reset-Password/${token}`;
 
     //invoke the sendMail function with the info in the email
     let info = transporter.sendMail(
