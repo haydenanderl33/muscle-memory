@@ -6,6 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 const ResetPassword = () => {
   const params = useParams();
+
   const history = useHistory();
 
   const [values, setValues] = useState({
@@ -39,6 +40,7 @@ const ResetPassword = () => {
     }
 
     let token = params.token;
+
 
     try {
       await axios.patch(

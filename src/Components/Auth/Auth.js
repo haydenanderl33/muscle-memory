@@ -3,11 +3,13 @@ import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
 import { connect } from "react-redux";
 import { loginUser, setUser } from "../../redux/reducer";
+import { useCookies } from 'react-cookie'
 import "./Auth.css";
 
 import React from "react";
 
 const Auth = (props) => {
+  const [cookies, setCookies] = useCookies()
   const [newUser, setNewUser] = useState(false);
   const [values, setValues] = useState({
     email: "",

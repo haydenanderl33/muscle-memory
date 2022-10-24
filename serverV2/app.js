@@ -32,8 +32,8 @@ app.use(cors());
 app.use(xss());
 
 
-// app.get('/*', function (req, res) {
-//   res.sendFile(path.join(__dirname, '/build/index.html'), function (err) {
+// app.get('*', function (req, res) {
+//   res.sendFile(path.join(__dirname, '/../build/index.html'), function (err) {
 //     console.log('hello')
 //     if (err) {
 //       res.status(500).send(err)

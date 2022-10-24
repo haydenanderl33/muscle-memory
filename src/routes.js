@@ -15,7 +15,8 @@ export default (
         <Route exact path="/" component={Auth}/>
         <Route path="/home" component={Home}/>
         <Route path="/forgot-password" component={ForgotPassword}/>
-        <Route path="/resetPassword/:token" component={ResetPassword}/>
+        {/* <Route path="/reset-Password" component={ResetPassword}/> */}
+        <Route path="/reset-Password/:token" component={ResetPassword}/>
         <Route path="/editWorkout/workoutId=:workout_id" component={EditWorkout}/>
         <Route path="/addnew" component={AddForm}/>
         {/* <Route path="/instructions" component={Instructions}/> */}
