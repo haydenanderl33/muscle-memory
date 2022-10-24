@@ -27,7 +27,6 @@ const forgotPassword = async (req, res) => {
   await userEmail.updateOne({ resetLink: token });
 
   try {
-    //invoke the createTransport function passing in your email information.
     let transporter = nodemailer.createTransport({
       service: "Yahoo",
       auth: {
@@ -36,10 +35,8 @@ const forgotPassword = async (req, res) => {
       },
     });
 
-    // let link = `${CLIENT_URL}/reset-Password/${token}`;
     let link = `${CLIENT_URL}/reset-Password/${token}`;
 
-    //invoke the sendMail function with the info in the email
     let info = transporter.sendMail(
       {
         from: EMAIL, //This will show up when you go into the email
