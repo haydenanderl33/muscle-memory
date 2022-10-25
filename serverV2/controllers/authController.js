@@ -49,7 +49,10 @@ const register = async (req, res) => {
     res.sendStatus(500);
   }
 
-  res.status(StatusCodes.CREATED).json({ user: { email: user.email }, token });
+  res.status(StatusCodes.CREATED).json({
+    user: { email: user.email, username: user.username },
+    token,
+  });
   console.log(`Registration for ${user.email} successful.`);
 };
 
@@ -64,20 +67,20 @@ const login = async (req, res) => {
   const userEmail = await User.findOne({ email });
 
   if (!userEmail) {
-   return res.status(StatusCodes.NOT_FOUND).json("Invalid Credentials, Email");
+    return res.status(StatusCodes.NOT_FOUND).json("Invalid Credentials, Email");
   }
   const isPasswordCorrect = await userEmail.comparePassword(password);
   if (!isPasswordCorrect) {
-    return res.status(StatusCodes.NOT_FOUND).json("Invalid Credentials, Password");
+    return res
+      .status(StatusCodes.NOT_FOUND)
+      .json("Invalid Credentials, Password");
   }
   const token = userEmail.createJWT();
   // console.log(token)
-  res
-    .status(StatusCodes.OK)
-    .json({
-      user: { email: userEmail.email, username: userEmail.username },
-      token,
-    });
+  res.status(StatusCodes.OK).json({
+    user: { email: userEmail.email, username: userEmail.username },
+    token,
+  });
   console.log(`Login for ${email} successful.`);
 };
 

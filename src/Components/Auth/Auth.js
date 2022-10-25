@@ -52,8 +52,15 @@ const Auth = (props) => {
     e.preventDefault();
 
     try {
-      const user = await axios.post("/api/v1/auth/register", { ...values });
+      const user = await axios.post("/api/v1/auth/register", {
+        email: values.email,
+        username: values.username,
+        password: values.password,
+      });
+
+      console.log(user)
       sessionStorage.setItem("token", user.data.token);
+      sessionStorage.setItem("username", user.data.user.username);
       props.setUser(user.data.user);
       history.push("/home");
     } catch (err) {

@@ -8,7 +8,7 @@ import toast, { Toaster } from "react-hot-toast";
 const Goals = (props) => {
   const metyourGoals = () => {
     props.goals();
-    toast.success("Good Job meeting your Goals!");
+    // toast.success("Good Job meeting your Goals!");
   };
   const reset = () => {
     props.resetgoals();
