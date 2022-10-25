@@ -5,7 +5,7 @@ const {resetPassword, forgotPassword} = require("../controllers/passwordControll
 
 router.route('/').post(forgotPassword)
 
-router.route('/resetPassword/:token').patch(resetPassword)
+router.route('/:token').patch(resetPassword)
 
 
 module.exports = router

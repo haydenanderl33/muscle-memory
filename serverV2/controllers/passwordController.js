@@ -68,7 +68,6 @@ const resetPassword = async (req, res) => {
   const {token} = req.params
   const { newPassword } = req.body;
 
-
   if (!token) {
     return res.status(StatusCodes.UNAUTHORIZED).send("Unauthorized");
   }
