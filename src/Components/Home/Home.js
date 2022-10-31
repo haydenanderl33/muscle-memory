@@ -8,14 +8,22 @@ import { setUser } from "../../redux/reducer";
 import { withRouter } from "react-router-dom";
 import Header from "../Header/Header";
 import toast, { Toaster } from "react-hot-toast";
+import { useHistory } from "react-router-dom";
 
 function Home({ user }) {
   const [workouts, setWorkouts] = useState([]);
   // const [loading, setLoading] = useState(false);
 
+  const history = useHistory()
+
   const getWorkouts = async () => {
     // setLoading(true);
     let token = sessionStorage.getItem("token");
+
+    if (!token) {
+      alert("Please Login In");
+      return history.push("/");
+    }
 
     const config = {
       headers: { Authorization: `Bearer ${token}` },
@@ -36,6 +44,11 @@ function Home({ user }) {
   const deleteWorkout = async (workout_id) => {
 
     let token = sessionStorage.getItem("token");
+
+    if (!token) {
+      alert("Please Login In");
+      return history.push("/");
+    }
 
     const config = {
       headers: { Authorization: `Bearer ${token}` },

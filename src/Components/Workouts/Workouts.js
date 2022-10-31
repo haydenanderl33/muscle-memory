@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Workouts.css";
 
 const Workouts = ({ workout, deleteWorkout }) => {
-  let timestamp = workout.createdAt;
+  let timestamp = workout.updatedAt;
   let date = new Date(timestamp);
 
   return (

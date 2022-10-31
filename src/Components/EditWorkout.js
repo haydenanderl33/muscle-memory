@@ -23,6 +23,11 @@ const EditWorkout = ({ user, isLoggedIn }) => {
   const getWorkout = async () => {
     let token = sessionStorage.getItem("token");
 
+    if (!token) {
+      alert("Please Login In");
+      return history.push("/");
+    }
+
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };

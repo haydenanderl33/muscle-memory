@@ -15,8 +15,7 @@ const AddForm = () => {
     workout_weight: "",
   });
 
-
-  const history = useHistory()
+  const history = useHistory();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -30,6 +29,11 @@ const AddForm = () => {
   const addWorkout = async (e) => {
     e.preventDefault();
     let token = sessionStorage.getItem("token");
+
+    if (!token) {
+      alert("Please Login In");
+      return history.push("/");
+    }
 
     const config = {
       headers: { Authorization: `Bearer ${token}` },
@@ -64,7 +68,7 @@ const AddForm = () => {
     } catch (err) {
       alert(err.response.request.response);
     }
-    toast.success('Workout Created');
+    toast.success("Workout Created");
 
     setExcercise({
       workout_name: "",
@@ -75,7 +79,7 @@ const AddForm = () => {
   };
 
   const cancelbtn = () => {
-    history.push('/home')
+    history.push("/home");
   };
 
   return (
@@ -116,7 +120,7 @@ const AddForm = () => {
           </button>
         </div>
       </form>
-      <Toaster/>
+      <Toaster />
     </div>
   );
 };
@@ -134,4 +138,3 @@ const mapStateToProps = (reduxState) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddForm);
-
