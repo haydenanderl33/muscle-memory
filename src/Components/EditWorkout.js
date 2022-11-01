@@ -24,7 +24,7 @@ const EditWorkout = ({ user, isLoggedIn }) => {
     let token = sessionStorage.getItem("token");
 
     if (!token) {
-      alert("Please Login In");
+      alert("No user logged in, Please log in");
       return history.push("/");
     }
 
